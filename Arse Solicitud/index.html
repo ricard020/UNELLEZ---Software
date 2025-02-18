@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNELLEZ - Portal Estudiantil</title>
+    <link rel="stylesheet" href="./CSS/Estilo_Base.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="login-container">
+        <img src="./imagen/logo unellez.png" alt="Logo institucional naranja con diseño geométrico" class="logo">
+        <h2>UNELLEZ</h2>
+        <form id="loginForm" action="./php/login.php" method="POST">
+            <div class="input-group" style="position: relative;">
+                <input type="text" name="nombre_usuario" placeholder="Nombre de Usuario" required>
+            </div>
+            <div class="input-group" style="position: relative;">
+                <input type="password" name="password" id="password" placeholder="Contraseña" required>
+  
+                <span onclick="togglePassword()" id="togglePasswordIcon" 
+                      style="cursor: pointer; position: absolute; right: 10px; top: 50%; transform: translateY(-50%); font-size: 1.2rem;">
+                    <i class="fa-solid fa-eye-slash"></i>
+                </span>
+            </div>
+            <button type="submit" class="btn">Iniciar Sesión</button>
+            <button type="button" class="btn register" onclick="window.location.href='./Registro/register.php'">
+                Registrarse
+            </button>
+        </form>
+        
+        <div class="footer-links">
+            <a href="./contraseña/recuperar.php">¿Olvidó su contraseña?</a>
+        </div>
+    </div>
+
+    <script>
+        // Efectos visuales mejorados
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.style.transform = 'translateY(-2px)';
+            });
+            
+            input.addEventListener('blur', function() {
+                this.parentElement.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Animación suave al cargar
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('.login-container').style.opacity = '0';
+            setTimeout(() => {
+                document.querySelector('.login-container').style.opacity = '1';
+                document.querySelector('.login-container').style.transition = 'opacity 0.5s ease-in-out';
+            }, 100);
+        });
+
+        // Función para alternar la visibilidad de la contraseña
+        function togglePassword() {
+            const passwordField = document.getElementById('password');
+            const toggleIcon = document.querySelector('#togglePasswordIcon i'); 
+            
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                toggleIcon.classList.remove('fa-eye-slash');
+                toggleIcon.classList.add('fa-eye'); 
+            } else {
+                passwordField.type = 'password';
+                toggleIcon.classList.remove('fa-eye');
+                toggleIcon.classList.add('fa-eye-slash');
+            }
+        }
+    </script>
+</body>
+</html>

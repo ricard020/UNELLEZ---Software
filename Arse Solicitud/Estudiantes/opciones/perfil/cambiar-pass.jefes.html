@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Cambiar Contraseña</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="../../../CSS/cambiar-pass.style.css">
+	<title></title>
+</head>
+<body>
+	<header class="py-1 shadow-sm" style="background-color: rgba(255, 255, 255, 0.7); position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;">
+        <div class="container d-flex align-items-center justify-content-start">
+            <img src="../../../imagen/logo unellez.png" alt="Icono de ejemplo" width="50" height="50" class="me-3">
+            <div class="d-flex align-items-center w-100 justify-content-center">
+                <h1 class="miperfil" style="color: rgb(255,255,255); background-color: rgb(255, 107, 0);">Mi Perfil</h1>
+            </div>
+            <div class="d-flex align-items-center ms-auto">
+                <div class="position-relative me-4" id="notification-bell">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF6B00" stroke-width="2">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning">2</span>
+                </div>
+                <div class="dropdown d-inline-block">
+                    <a href="#" id="profile-icon" data-bs-toggle="dropdown" aria-expanded="false">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF6B00" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="./opciones/perfil.jefes.html">Datos del usuario</a></li>
+                        <li><a class="dropdown-item" href="#">Modificar datos</a></li>
+                        <li><a class="dropdown-item" href="../PHP/logout.php">Cerrar Sesión</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="cambiar-pass">
+
+        <div class="datos">
+            <div class="etiqueta">
+                <label class="etq">Cambiar Contraseña</label>
+            </div>
+            <div class="dato">
+                <p class="dato">Se enviara un codigo al correo electronico registrado una vez que presione la tecla enviar.</p>
+            </div>
+            <div class="boton-eviar">
+                <button type="submit" class="boton-enviar">Enviar</button>
+            </div>
+            <div class="btn-code">
+                <input type="text" id="code" name="code" class="code" placeholder="Ingrese el Codigo" required>
+            </div>
+            <div class="dato">
+                <p class="dato">Si no ha recibido el codigo pulse nuevamente.</p>
+            </div>
+        </div>
+
+    </section>
+
+    <div class="botones">
+        <div class="btn-izquierda">
+            <a class="boton" href="../perfil.jefes.html">Inicio</a>
+        </div>
+        <div class="btn-derecha">
+            <a class="boton" href="./cambiar-pass-next.jefes.html">Siguiente</a>
+        </div>
+    </div>
+
+    <footer class="py-3 text-center position-fixed bottom-0 w-100" style="background-color: rgb(255, 107, 0);">
+      <div class="d-flex justify-content-center w-100">
+       <a href="https://ejemplo.com/ayuda" class="me-3" style="color: white;">Ayuda</a>
+   </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  document.getElementById('notification-bell').addEventListener('click', () => {
+   alert('Notificaciones:\n- Nuevo curso disponible\n- Actualización del sistema');
+});
+</script>
+</body>
+</html>

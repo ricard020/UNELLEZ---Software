@@ -1,0 +1,140 @@
+# Arse2
+usuario de super admin
+
+Usuario:superadmin
+Contraseña:superadmin123
+
+
+# Jefes de SubPrograma
+
+1-Arquitectura:
+Usuario: Subparquitectura
+Contraseña: Arqui321
+
+2-ING.Civil:
+Usuario: Subpingcivil
+Contraseña: Civil123
+
+3-ING.De Petróleo:
+Usuario: Subpingpetroleo
+Contraseña: Petroleo789
+
+4-Meteorología:
+Usuario: Subpmeteorologia
+Contraseña: Meteorologia776
+
+5-T.S.U En Construcción Civil:
+Usuario: Subpconstruccioncivil
+Contraseña: Construccioncivil654
+
+6-T.S.U En Informática:
+Usuario: Subptsuinformatica
+Contraseña: Informatica9945
+
+7-Botánica Tropical:
+Usuario: Subpbotanicatropical
+Contraseña: Botanica813
+
+8-Enfermería:
+Usuario: Subpenfermeria
+Contraseña: Enfermeria264
+
+9-Estadística:
+Usuario: Subpestadistica
+Contraseña: Estadistica557
+
+10-Economía Agrícola:
+Usuario: Subpeconomiaagricola
+Contraseña: Economia333
+
+11-ING.Agroindustrial:
+Usuario: Subpingagroindustrial
+Contraseña: Agroindustrial777
+
+12-ING.Agronómica:
+Usuario: Subpingagronomica
+Contraseña: Agronomica093
+
+13-ING.En Producción Animal:
+Usuario: Subpingproanimal
+Contraseña: Proanimal665
+
+14-Medicina Veterinaria:
+Usuario: Subpveterinaria
+Contraseña: Veterinaria176
+
+15-Derecho:
+Usuario: Subpderecho
+Contraseña: Derecho255
+
+16-Administración:
+Usuario: Subpadministracion
+Contraseña: Administra119
+
+17-Administración Agropecuaria:
+Usuario: Subpagropecuaria
+Contraseña: Agropecuaria341
+
+18-Contaduria Pública:
+Usuario: Subpcontaduria
+Contraseña: Contaduria881
+
+19-Sociología del Desarrollo:
+Usuario: Subpsociologia
+Contraseña: Sociologia444
+
+20-Turismo Agroecológico:
+Usuario: Subpturismo
+Contraseña: Turismo229
+
+21-Biologia:
+Usuario: Subpbiologia
+Contraseña: Biologia333
+
+22-Castellano y Literatura:
+Usuario: Subpcastellano
+Contraseña: Castellano114
+
+23-Educacion Integral:
+Usuario: Subpeduintegral
+Contraseña: Integral512
+
+24-Educación Men. Física:
+Usuario: Subpedumenfisica
+Contraseña: Menfisica901
+
+25-Educación Men. Física, Deportes y Recreacion:
+Usuario: Subpedumendeporte
+Contraseña: Mendeporte
+
+26-Educación Men. Matemática:
+Usuario: Subpedumenmatematica
+Contraseña: Menmatematica374
+
+27-Educación Men. Química:
+Usuario: Subpedumenquimica
+Contraseña: Menquimica441
+
+28-Geografía e Historia:
+Usuario: Subpedumengeografia
+Contraseña: Mengeografia796
+
+29-PFG.Agropecuaria:
+Usuario: Subppfgagropecuaria
+Contraseña: Pfgagropecuaria299
+
+30-Men.Arte:
+Usuario: Subpmenarte
+Contraseña: Menarte511
+
+31-Educacion Especial:
+Usuario: Subpeduespecial
+Contraseña: Especial681
+
+32-LIC.Orientación:
+Usuario: Subplicorientacion
+Contraseña: Orientacion700
+
+33-PNF.Inglés:
+Usuario: Subppnfingles
+Contraseña: Pnfingles236

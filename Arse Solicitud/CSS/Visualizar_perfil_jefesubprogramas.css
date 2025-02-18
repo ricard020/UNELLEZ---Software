@@ -1,0 +1,270 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('../imagen/2.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #333;
+    line-height: 1.6;
+    background-color: #f8f9fa;
+}
+
+header {
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    animation: slideDown 0.5s ease-in-out;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+header img {
+    border-radius: 50%;
+}
+
+header h1 {
+    color: #FF6B00;
+}
+
+footer {
+    background-color: #FF6B00;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    padding: 10px 0;
+    z-index: 1000;
+    left: 0;
+}
+
+footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 20px;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+#notification-bell svg {
+    cursor: pointer;
+}
+
+
+
+.transform-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin: 20px auto;
+    max-width: 600px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.transform-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.transform-card.clicked {
+    transform: scale(0.95);
+}
+
+.card-title {
+    color: #FF6B00;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.card-title:hover {
+    color: #FF6B00;
+}
+
+.card-text-label {
+    color: #FF6B00;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+
+
+.miperfil {
+    cursor: pointer;
+    padding: 10px 150px;
+    font-size: 24px;
+    border-radius: 15px;
+    max-width: 500px;
+    text-align: center;
+    display: flex;
+    align-content: center;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedor-perfil {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    max-width: 1200px;
+    margin: 150px auto 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 1s ease-in-out;
+    justify-content: center; /* Centrar el contenido horizontalmente */
+}
+
+.user-icon-container {
+    position: relative;
+    width: 300px; /* Aumentar el tamaño de la foto */
+    height: 200px; /* Aumentar el tamaño de la foto */
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    justify-content: center; /* Centrar la imagen horizontalmente */
+    align-items: center; /* Centrar la imagen verticalmente */
+}
+
+.user-icon {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.user-icon:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.user-icon-container:hover .overlay {
+    opacity: 1;
+}
+
+.overlay {
+    position: absolute;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    cursor: pointer; /* Asegurarse de que el texto también sea clicable */
+}
+
+.datos {
+    margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.dato {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    font-size: 20px;
+    color: #333;
+}
+
+.dato-linea {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.dato-linea .dato {
+    flex: 1;
+    font-size: 20px;
+}
+
+.botones {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 10px;
+    margin-bottom: 5rem;
+}
+
+.boton {
+    background-color: #ff6600;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 15px;
+    cursor: pointer;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.boton:hover {
+    background-color: #e55d00;
+}
+
+.btn-izquierda {
+    display: flex;
+    margin: 0px auto;
+}
+
+.btn-derecha {
+    display: flex;
+    gap: 15px;
+    margin: 0px auto;
+}
+
+.requirement {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.text-success {
+    color: green;
+}
+
+.text-danger {
+    color: red;
+}
+
+.progress {
+    height: 20px;
+}
+
+.progress-bar {
+    background-color: #28a745;
+}
+
+.dropdown-menu {
+    background-color: rgba(230, 93, 6, 0.9);
+    border: none;
+    transform: translateY(-20px);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.dropdown-menu.show {
+    transform: translateY(0);
+    opacity: 1;
+}

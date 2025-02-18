@@ -1,0 +1,101 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('2.jpg');
+    color: #333;
+    line-height: 1.6;
+}
+
+.miperfil {
+    cursor: pointer;
+    padding: 10px 150px;
+    font-size: 24px;
+    border-radius: 15px;
+    max-width: 500px;
+    text-align: center;
+    display: flex;
+    align-content: center;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.cambiar-datos {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    max-width: 800px;
+    margin: 150px auto 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgb(0 0 0 / 20%);
+    justify-content: space-around;
+}
+
+.etiqueta {
+    background-color: #ff6600;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 15px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    margin: 20px 50px;
+    display: inline-flex;
+}
+
+.mod-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 10px;
+}
+
+.botones {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 10px;
+    margin-bottom: 5rem;
+}
+
+.boton {
+    background-color: #ff6600;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 15px;
+    cursor: pointer;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.boton:hover {
+    background-color: #e55d00;
+}
+
+.btn-izquierda {
+    display: flex;
+    margin: 0px auto;
+}
+
+.btn-derecha {
+    display: flex;
+    gap: 15px;
+    margin: 0px auto;
+}

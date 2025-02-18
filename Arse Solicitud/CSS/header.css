@@ -1,0 +1,69 @@
+header {
+    background-color:rgb(49, 49, 49);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    animation: slideDown 0.5s ease-in-out;
+    padding: 10px 20px;
+    color: rgb(255, 107, 0);
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+header img {
+    border-radius: 50%;
+}
+
+header h1 {
+    color: #FF6B00;
+}
+
+header h1 {
+    color: rgb(255, 107, 0);
+}
+
+footer {
+    background-color: #FF6B00;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    padding: 10px 0;
+    z-index: 1000;
+    left: 0;
+}
+
+footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 20px;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+.dropdown-menu {
+    background-color: rgba(230, 93, 6, 0.9);
+    border: none;
+    transform: translateY(-20px);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.dropdown-menu.show {
+    transform: translateY(0);
+    opacity: 1;
+}

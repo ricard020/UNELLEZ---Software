@@ -1,0 +1,320 @@
+/* General */
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('../imagen/2.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #333;
+    line-height: 1.6;
+    background-color: #f8f9fa;
+}
+
+.container {
+    width: 100%;
+    margin: 80px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+header {
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    animation: slideDown 0.5s ease-in-out;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+header img {
+    border-radius: 50%;
+}
+
+header h1 {
+    color: #FF6B00;
+}
+
+/* Footer */
+footer {
+    background-color: #FF6B00;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    padding: 10px 0;
+    z-index: 1000;
+    left: 0;
+}
+
+footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 5px 20px;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Formulario */
+.form-container {
+    font-family: 'Verdana', sans-serif; /* Fuente específica para el formulario */
+}
+
+h3 {
+    color: #555;
+}
+
+/* Contenedores principales */
+.solicitudes-container {
+    display: flex;
+    gap: 20px;
+}
+
+.solicitudes-list {
+    flex: 1;
+    background: #eaeaea;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.solicitudes-list label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background 0.3s ease, color 0.3s ease;
+    background: #fff;
+    border: 1px solid #ccc;
+}
+
+.solicitudes-list label:hover {
+    background: #4CAF50;
+    color: #fff;
+}
+
+.solicitudes-list input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.solicitudes-details {
+    flex: 2;
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+#selected-solicitudes h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+#selected-solicitudes .detalle {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #fff;
+}
+
+#selected-solicitudes .detalle label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* Estilo para los select */
+.form-select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 25px; /* Bordes redondeados */
+    background: #fff;
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    appearance: none; /* Quitar estilos nativos del navegador */
+    cursor: pointer; /* Cursor de selección */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+}
+
+.form-select:focus {
+    border-color: #4CAF50;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Sombra azul al enfocar */
+}
+
+.form-select::after {
+    content: '\25BC'; /* Flecha hacia abajo */
+    font-size: 14px;
+    color: #333;
+    position: absolute;
+    right: 15px; /* Ubicación de la flecha */
+    pointer-events: none; /* Evitar interacción con la flecha */
+}
+
+/* Campo de Descripción General */
+#general-description-section {
+    margin-top: 20px;
+}
+
+#general-description {
+    width: 100%;
+    height: 100px;
+    padding: 3px;
+    font-size: 14px;
+    border: none; /* Sin borde extra */
+    border-radius: 20px; /* Bordes tipo "pill" */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    resize: none;
+    background: #fff; /* Fondo blanco */
+}
+
+#general-description::placeholder {
+    color: #555;
+    font-style: italic;
+}
+
+#char-count {
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+#char-count.green {
+    color: green;
+}
+
+#char-count.yellow {
+    color: orange;
+}
+
+#char-count.red {
+    color: red;
+}
+
+/* Botones */
+.action-buttons {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.btn-red {
+    background: #4CAF50;
+    color: #fff;
+}
+
+.btn-red:hover {
+    background: #45a049;
+    transform: scale(1.05);
+}
+
+.btn-orange {
+    background: #f44336;
+    color: #fff;
+}
+
+.btn-orange:hover {
+    background: #e53935;
+    transform: scale(1.05);
+}
+
+.btn-back {
+    background: #3498db;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: inline-block;
+    border-radius: 5px;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.btn-back:hover {
+    background: #2980b9;
+    transform: scale(1.05);
+}
+
+/* Estilo para los radio buttons */
+.radio-container {
+    display: flex;
+    gap: 10px;
+}
+
+.radio-container label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.radio-container input[type="radio"] {
+    accent-color: #4CAF50;
+}
+
+.custom-footer {
+    background-color: #FF6B00;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    padding: 10px 0;
+    z-index: 1000;
+    left: 0;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 5px 20px;
+}
+
+.footer-container a {
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+}
+
+.footer-container a:hover {
+    text-decoration: underline;
+}
+
+.dropdown-menu {
+    background-color: rgba(230, 93, 6, 0.9);
+    border: none;
+    transform: translateY(-20px);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.dropdown-menu.show {
+    transform: translateY(0);
+    opacity: 1;
+}
