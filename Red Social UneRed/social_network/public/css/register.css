@@ -1,0 +1,17 @@
+/* Ventana Modal de Register */
+
+.modal-content.register-modal {
+    background-color: #f5f5f5; /* Color de fondo suave para la modal */
+    color: #000000; /* Color del texto en la modal */
+    
+    border-radius: 20px;
+}
+
+.modal-body.register-modal {
+    background-color: #ffffff; /* Blanco */
+    color: #000000; /* Color del texto */
+    border-radius: 20px;
+}
+.modal-title.register-modal {
+    color: #FFA500; /* Naranja (30%) */
+}

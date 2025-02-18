@@ -1,0 +1,103 @@
+body {
+    background-color: #4a5757;
+    background-image: url("data:image/svg+xml,%3Csvg width='42' height='44' viewBox='0 0 42 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Page-1' fill='none' fill-rule='evenodd'%3E%3Cg id='brick-wall' fill='%23293737' fill-opacity='0.14'%3E%3Cpath d='M0 0h42v44H0V0zm1 1h40v20H1V1zM0 23h20v20H0V23zm22 0h20v20H22V23z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    margin-left: 250px; /* Ajusta esto al ancho de tu navbar */
+    padding: 20px; /* Opcional, para que no quede pegado */
+}
+
+.main-content {
+    margin-left: 70px !important; /* Deja espacio para el navbar */
+    padding: 20px;
+    width: calc(100% - 70px) !important; /* Ajusta el ancho del contenido */
+    overflow-x: hidden;
+}
+
+/* Estilo general para el navbar */
+.navbar {
+    position: fixed; /* Fija la barra en la pantalla */
+    top: 0;
+    left: 0;
+    height: 100%; /* Ocupa toda la altura de la pantalla */
+    width: 70px; /* Ancho del navbar */
+    background-color: #293737;
+    display: flex;
+    flex-direction: column; /* Coloca los elementos en una columna */
+    align-items: center;
+    padding-top: 1rem;
+    z-index: 1000; /* Prioridad en capas */
+    transition: all 0.3s ease;
+}
+
+.navbar-nav {
+    width: 100%; /* Ocupa todo el ancho del navbar */
+    padding: 0;
+    margin: 0;
+    list-style: none; /* Elimina puntos de lista */
+    display: flex;
+    flex-direction: column; /* Coloca los ítems en una columna */
+    justify-content: space-between; /* Distribuye los ítems equitativamente */
+    height: 100%; /* Asegura que ocupen toda la altura del navbar */
+}
+
+.nav-item {
+    width: 100%; /* Ocupa todo el ancho disponible */
+    text-align: center;
+}
+
+.nav-link {
+    color: #fff;
+    font-size: 2rem; /* Íconos más grandes */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Asegura que ocupen todo el espacio asignado */
+    transition: transform 0.3s ease; /* Transición suave para el efecto de aumento */
+}
+
+.nav-link:hover {
+    transform: scale(1.3); /* Aumenta el tamaño del ícono al 130% */
+    color: #ee5d1c !important;
+}
+
+
+/* Cambios responsive */
+@media (max-width: 767.5px)  {
+    .navbar {
+        top: auto;
+        bottom: 0; /* Mueve el navbar a la parte inferior */
+        left: 0;
+        height: 70px; /* Reduce la altura del navbar */
+        width: 100%; /* Ocupa todo el ancho de la pantalla */
+        flex-direction: row !important; /* Cambia a una fila horizontal */
+        justify-content: space-around; /* Espaciado uniforme entre ítems */
+        align-items: center;
+        padding: 0;
+    }
+
+    .navbar-nav {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        display: flex;
+        flex-direction: row !important;
+    }
+    .main-content {
+        margin-left: 0 !important; /* Elimina el margen en móviles */
+        margin-bottom: 80px !important; /* Espacio para la barra en la parte inferior */
+    }
+
+    .nav-item {
+        margin: 0; /* Elimina márgenes extra */
+    }
+
+    .nav-link {
+        font-size: 1.8rem; /* Íconos ligeramente más pequeños en móviles */
+    }
+}
+

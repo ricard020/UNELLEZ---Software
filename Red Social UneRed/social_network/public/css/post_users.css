@@ -1,0 +1,82 @@
+.post {
+    border: none !important;
+    color: white !important;
+}
+.post img {
+    max-width: 100%; /* Ajusta el ancho de las imágenes al contenedor */
+    max-height: 300px; /* Establece una altura máxima */
+    object-fit: cover; /* Recorta las imágenes si exceden las dimensiones */
+    border-radius: 10px; /* Bordes redondeados para las imágenes */
+}
+
+.post img.rounded-circle {
+    border: 2px solid #ee5d1c;
+}
+
+.card {
+    border-radius: 10px; /* Bordes redondeados para las tarjetas */
+    overflow: hidden; /* Asegura que las imágenes no sobresalgan */
+}
+
+.card-body {
+    padding: 15px;
+    background: #4a5757;
+    border-color: transparent;
+}
+.postProfileCard > a {
+    color: #ee5d1c;
+    text-decoration: none;
+}
+
+/* Botones generales */
+.postActionButtonsContainer {
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    padding-top: 1rem;
+    margin-top: 1rem;
+}
+.retweet-btn, .like-btn, .comment-btn, .comment-btn2 {
+    background-color: transparent; /* Fondo transparente */
+    color: white; /* Color del texto */
+    border: none; /* Sin bordes visibles */
+    border-radius: 20px; /* Bordes redondeados */
+    padding: 5px 10px; /* Espaciado interno */
+    font-size: 14px; /* Tamaño de fuente */
+    transition: all 0.3s ease; /* Transición suave */
+}
+
+/* Estilo para el botón de retweet */
+.retweet-btn:hover, .retweeted {
+    background-color: rgba(0, 255, 0, 0.5); /* Fondo verde claro */
+    border: none; /* Sin bordes */
+    color: #fff;
+}
+
+/* Estilo para los botones de "Me gusta" */
+.like-btn:hover, .liked {
+    background-color: rgba(255, 0, 0, 0.5); /* Fondo rojo claro */
+    border: none; /* Sin bordes */
+    color: #fff;
+}
+
+/* Estilo para los botones de comentarios */
+.comment-btn:hover, .comment-btn2:hover {
+    background-color: rgba(17, 0, 255, 0.5); /* Fondo azul claro */
+    color: #fff;
+    border: none; /* Sin bordes */
+}
+
+.postFileButton {
+    color: #ee5d1c;
+}
+
+/* Alineación de los botones en una fila */
+.d-flex {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px; /* Espaciado entre los botones */
+    align-items: center;
+}
+
+.d-flex, .btn, .btn2 {
+    flex: 1; /* Asegura que los botones ocupen un espacio equitativo */
+}

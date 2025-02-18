@@ -1,0 +1,45 @@
+
+    <link rel="stylesheet" href="../pusblic/css/register.css">
+    
+    <div class="">
+        <h2 class="text-center">Registro de Usuario</h2>
+        <form action="../controllers/register.php" method="POST" class="p-4 shadow rounded bg-light">
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre:</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" required>
+            </div>
+            <div class="mb-3">
+                <label for="apellido" class="form-label">Apellido:</label>
+                <input type="text" class="form-control" id="apellido" name="apellido" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Correo Electrónico:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Contraseña:</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <div class="mb-3">
+                <label for="carrera" class="form-label">Carrera:</label>
+                <input type="text" class="form-control" id="carrera" name="carrera" required>
+            </div>
+            <div class="mb-3">
+                <label for="semestre" class="form-label">Semestre:</label>
+                <select class="form-control" id="semestre" name="semestre" required>
+                    <option value="I">I</option>
+                    <option value="II">II</option>
+                    <option value="III">III</option>
+                    <option value="IV">IV</option>
+                    <option value="V">V</option>
+                    <option value="VI">VI</option>
+                    <option value="VII">VII</option>
+                    <option value="VIII">VIII</option>
+                    <option value="IX">IX</option>
+                    <option value="X">X</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Registrarse</button>
+        </form>
+        
+    </div>

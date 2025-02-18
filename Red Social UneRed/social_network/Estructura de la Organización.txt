@@ -1,0 +1,61 @@
+/social-network-project
+│-- /public
+│   │-- /css
+│   │   ├── style.css           # Estilos globales de la web
+│   │   ├── responsive.css      # Estilos responsivos
+│   │-- /js
+│   │   ├── main.js             # Funcionalidades de la interfaz (validaciones, interacciones)
+│   │-- /images
+│   │   ├── logo.png            # Logo del sitio
+│   │   ├── profile-default.png  # Imagen de perfil por defecto
+│-- /includes
+│   │-- /config
+│   │   ├── database.php         # Conexión a la base de datos MySQL
+│   │   ├── constants.php        # Configuraciones globales
+│   │-- /partials
+│   │   ├── header.php           # Encabezado común para todas las páginas
+│   │   ├── footer.php           # Pie de página común
+│   │   ├── sidebar.php          # Barra lateral con navegación
+│-- /pages
+│   │-- home.php                 # Página principal
+│   │-- profile.php               # Página de perfil del usuario
+│   │-- thread.php                # Página de un hilo específico
+│   │-- login.php                 # Página de inicio de sesión
+│   │-- register.php              # Página de registro
+│   │-- contact.php               # Página de contacto
+│   │-- about.php                 # Página de información sobre el sitio
+│-- /admin
+│   │-- dashboard.php             # Panel de administración
+│   │-- manage-users.php          # Gestión de usuarios
+│   │-- manage-threads.php         # Gestión de hilos
+│-- /controllers
+│   │-- authController.php         # Manejo de autenticación (login, registro, logout)
+│   │-- threadController.php       # Manejo de hilos (creación, edición, eliminación)
+│   │-- userController.php         # Manejo del perfil de usuario
+│-- /models
+│   │-- User.php                   # Modelo de usuario
+│   │-- Thread.php                 # Modelo de hilos
+│   │-- Comment.php                # Modelo de comentarios
+│-- /uploads
+│   │-- /profiles                  # Imágenes de perfil de usuarios
+│   │-- /threads                    # Archivos subidos a los hilos
+│-- /logs
+│   │-- access.log                  # Registro de accesos
+│   │-- errors.log                   # Registro de errores
+│-- index.php                       # Página principal
+│-- .htaccess                        # Configuración de Apache
+│-- .env                             # Variables de entorno
+│-- README.md                        # Documentación del proyecto
+
+
+Explicación de la estructura:
+/public: Contiene los recursos estáticos como CSS, JS e imágenes.
+/includes/config: Archivos de configuración global y conexión a la base de datos.
+/includes/partials: Fragmentos reutilizables como encabezado, pie de página y barra lateral.
+/pages: Páginas principales de la web.
+/admin: Panel de administración para gestionar contenido y usuarios.
+/controllers: Lógica de negocio separada para manejar usuarios, hilos y autenticación.
+/models: Clases que representan las entidades de la base de datos.
+/uploads: Carpeta donde se almacenan imágenes y archivos subidos por los usuarios.
+/logs: Archivos de registro de errores y accesos.
+index.php: Punto de entrada principal del sitio web.

@@ -1,0 +1,7 @@
+.comentarios > .comentario {
+  background: #4a5757;
+  color: #fff;
+}
+.comentarios > .comentario > .commentDate {
+  color: #ee5d1c;
+}

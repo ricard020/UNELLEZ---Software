@@ -1,0 +1,41 @@
+body {
+    background-color: #181818; /* Negro (60%) */
+}
+h1 {
+    color: #e99700; /* Naranja (30%) */
+}
+.text-muted {
+    color: #FFFFFF !important; /* Blanco (10%) */
+}
+.btn-primary {
+    background-color: #e99700;
+    border-color: #e99700;
+}
+.btn-success {
+    background-color: #e99700;
+    border-color: #e99700;
+}
+.btn-primary:hover,
+.btn-success:hover {
+    background-color: #cc8400;
+    border-color: #cc8400;
+}
+
+/* Ventana Modal */
+
+.modal-content {
+    background-color: #f5f5f5; /* Color de fondo suave para la modal */
+    color: #000000; /* Color del texto en la modal */
+    margin-top: 50%;
+    border-radius: 20px;
+}
+
+.modal-body {
+    background-color: #ffffff; /* Blanco */
+    color: #000000; /* Color del texto */
+    border-radius: 20px;
+}
+.modal-title {
+    color: #FFA500; /* Naranja (30%) */
+}
+

@@ -1,0 +1,17 @@
+/* Ventana Modal de Login */
+
+.modal-content.login-modal {
+    background-color: #f5f5f5; /* Color de fondo suave para la modal */
+    color: #000000; /* Color del texto en la modal */
+    margin-top: 50%;
+    border-radius: 20px;
+}
+
+.modal-body.login-modal {
+    background-color: #ffffff; /* Blanco */
+    color: #000000; /* Color del texto */
+    border-radius: 20px;
+}
+.modal-title.login-modal {
+    color: #FFA500; /* Naranja (30%) */
+}
