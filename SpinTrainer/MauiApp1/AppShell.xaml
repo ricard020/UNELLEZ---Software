@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="SpinningTrainer.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:icons="http://www.aathifmahir.com/dotnet/2022/maui/icons"
+    xmlns:view="clr-namespace:SpinningTrainer.Views"
+    xmlns:viewModel="clr-namespace:SpinningTrainer.ViewModels"
+    Title="SpinningTrainer"
+    Shell.BackgroundColor="#E18417"
+    Shell.FlyoutBackdrop="Transparent"
+    Shell.FlyoutBehavior="Flyout"
+    Shell.FlyoutWidth="250"
+    Shell.ForegroundColor="White"
+    Shell.NavBarHasShadow="True"
+    Shell.TabBarIsVisible="False"
+    Shell.TitleColor="White">
+
+    <Shell.BindingContext>
+        <viewModel:AppShellViewModel />
+    </Shell.BindingContext>
+
+    <Shell.FlyoutBackground>#082247</Shell.FlyoutBackground>
+
+    <Shell.FlyoutHeader>
+        <VerticalStackLayout>
+            <Image Source="logoshell.png" />
+            <Label
+                Margin="0,-20,0,20"
+                FontSize="Title"
+                HorizontalTextAlignment="Center"
+                Text="SpinTrainer"
+                VerticalTextAlignment="Center" />
+        </VerticalStackLayout>
+    </Shell.FlyoutHeader>
+
+    <ShellContent
+        ContentTemplate="{DataTemplate view:SplashScreenView}"
+        FlyoutItemIsVisible="False"
+        Route="SplashScreenView"
+        Shell.FlyoutBehavior="Disabled" />
+
+    <ShellContent
+        ContentTemplate="{DataTemplate view:ExerciseConfiguratorView}"
+        FlyoutItemIsVisible="False"
+        Route="ExerciseConfiguratorView"
+        Shell.FlyoutBehavior="Disabled" />
+
+    <ShellContent
+        ContentTemplate="{DataTemplate view:ExerciseConfiguratorListView}"
+        FlyoutItemIsVisible="False"
+        Route="ExerciseConfiguratorListView"
+        Shell.FlyoutBehavior="Disabled" />
+
+    <ShellContent
+        ContentTemplate="{DataTemplate view:CustomExerciseTemplateListView}"
+        FlyoutItemIsVisible="False"
+        Route="CustomExerciseTemplateListView"
+        Shell.FlyoutBehavior="Disabled" />
+
+    <ShellContent
+        ContentTemplate="{DataTemplate view:CustomExerciseTemplateView}"
+        FlyoutItemIsVisible="False"
+        Route="CustomExerciseTemplateView"
+        Shell.FlyoutBehavior="Disabled" />
+
+    <ShellContent
+        ContentTemplate="{DataTemplate view:LoginView}"
+        FlyoutItemIsVisible="False"
+        Route="LoginView"
+        Shell.FlyoutBehavior="Disabled" />
+
+    <ShellContent
+        ContentTemplate="{DataTemplate view:ConnectionView}"
+        FlyoutItemIsVisible="False"
+        Route="ConnectionView"
+        Shell.FlyoutBehavior="Disabled" />
+
+    <ShellContent
+        ContentTemplate="{DataTemplate view:NewSessionView}"
+        FlyoutItemIsVisible="False"
+        Route="NewSessionView"
+        Shell.FlyoutBehavior="Disabled" />
+
+    <FlyoutItem
+        x:Name="SuperUserMenu"
+        FlyoutDisplayOptions="AsMultipleItems"
+        Route="SuperUserMenuView">
+
+        <ShellContent
+            Title="Menu Super Usuario"
+            ContentTemplate="{DataTemplate view:SuperUserMenuView}"
+            FlyoutItemIsVisible="True"
+            Icon="{icons:Material Icon=Home}" />
+
+        <ShellContent
+            Title="Mi Perfil"
+            ContentTemplate="{DataTemplate view:UserDetailsView}"
+            Icon="{icons:Material Icon=Person}" />
+
+        <ShellContent
+            Title="Ayuda"
+            ContentTemplate="{DataTemplate view:WebView}"
+            Icon="{icons:Material Icon=Help}" />
+    </FlyoutItem>
+
+    <FlyoutItem
+        x:Name="AdminMenu"
+        FlyoutDisplayOptions="AsMultipleItems"
+        Route="AdminMenuView">
+
+        <ShellContent
+            Title="Menu Administrador"
+            ContentTemplate="{DataTemplate view:AdminMenuView}"
+            FlyoutItemIsVisible="True"
+            Icon="{icons:Material Icon=Home}" />
+
+        <ShellContent
+            Title="Mi Perfil"
+            ContentTemplate="{DataTemplate view:UserDetailsView}"
+            Icon="{icons:Material Icon=Person}" />
+
+        <ShellContent
+            Title="Ayuda"
+            ContentTemplate="{DataTemplate view:WebView}"
+            Icon="{icons:Material Icon=Help}" />
+
+    </FlyoutItem>
+
+    <FlyoutItem
+        x:Name="TrainerMenu"
+        FlyoutDisplayOptions="AsMultipleItems"
+        Route="TrainerMenuView">
+
+        <ShellContent
+            Title="Menu Principal"
+            ContentTemplate="{DataTemplate view:MainPageView}"
+            FlyoutItemIsVisible="True"
+            Icon="{icons:Material Icon=Home}" />
+
+        <ShellContent
+            Title="Mi Perfil"
+            ContentTemplate="{DataTemplate view:UserDetailsView}"
+            Icon="{icons:Material Icon=Person}" />
+
+        <ShellContent
+            Title="Configurador"
+            ContentTemplate="{DataTemplate view:ConfiguratorMenuView}"
+            Icon="{icons:Material Icon=Settings}" />
+
+        <ShellContent
+            Title="Ayuda"
+            ContentTemplate="{DataTemplate view:WebView}"
+            Icon="{icons:Material Icon=Help}" />
+
+    </FlyoutItem>
+
+    <FlyoutItem
+        x:Name="TrainerMenuOffline"
+        FlyoutDisplayOptions="AsMultipleItems"
+        Route="TrainerMenuOffline">
+
+        <ShellContent
+            Title="Menu Principal"
+            ContentTemplate="{DataTemplate view:MainPageView}"
+            FlyoutItemIsVisible="True"
+            Icon="{icons:Material Icon=Home}" />
+
+        <ShellContent
+            Title="Ayuda"
+            ContentTemplate="{DataTemplate view:WebView}"
+            Icon="{icons:Material Icon=Help}" />
+
+    </FlyoutItem>
+
+    <MenuItem
+        Command="{Binding LogoutCommand}"
+        IconImageSource="{icons:Material Icon=Logout}"
+        Text="Salir" />
+</Shell>

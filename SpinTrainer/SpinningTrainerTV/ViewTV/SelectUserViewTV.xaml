@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SpinningTrainerTV.ViewTV.SelectUserViewTV"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:icons="http://www.aathifmahir.com/dotnet/2022/maui/icons"
+    Title="Selección de usuario"
+    Background="{StaticResource PrimaryDark}"
+    Loaded="ContentPage_Loaded">
+    <StackLayout>
+        <Label
+            FontSize="Large"
+            HorizontalOptions="Center"
+            Text="Seleccione su Perfil"
+            TextColor="White"
+            VerticalOptions="Start" />
+        <StackLayout VerticalOptions="CenterAndExpand">
+            <CollectionView
+                x:Name="ltvUsers"
+                ItemsLayout="VerticalGrid, 3"
+                ItemsSource="{Binding UsersList}"
+                SelectedItem="{Binding SelectedUser}"
+                SelectionChangedCommand="{Binding SelectUserCommand}"
+                SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout
+                            Padding="10"
+                            Focused="StackLayout_Focused"
+                            HorizontalOptions="Center"
+                            Orientation="Vertical">
+                            <Image
+                                HeightRequest="140"
+                                HorizontalOptions="Center"
+                                Source="{icons:Material Icon=AccountCircle,
+                                                        IconSize=200}"
+                                WidthRequest="140" />
+                            <Label
+                                FontSize="Medium"
+                                HorizontalOptions="Center"
+                                Text="{Binding Descrip}"
+                                TextColor="White" />
+                            <Label
+                                FontSize="Small"
+                                HorizontalOptions="Center"
+                                Text="{Binding CodUsua}"
+                                TextColor="White" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

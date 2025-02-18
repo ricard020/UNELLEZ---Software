@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SpinningTrainerTV.MainPage"
+             Background="DarkOrange">
+    <StackLayout>
+        <Label Text="Seleccione su Perfil" 
+               HorizontalOptions="Center"
+               VerticalOptions="Start" 
+               FontSize="Large"/>
+        <StackLayout VerticalOptions="CenterAndExpand"> <!--El [VerticalGrid, 3] indica la cantidad de usuarios que se van a mostrar en pantalla-->
+            <CollectionView x:Name="ltvUsers" ItemsLayout="VerticalGrid, 3" SelectionMode="Single" SelectionChanged="OnItemSelected">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Vertical" Padding="10" HorizontalOptions="Center">
+                            <Image Source="usuario.png" WidthRequest="140" HeightRequest="140" HorizontalOptions="Center"/>
+                            <Label Text="{Binding}" FontSize="Medium" HorizontalOptions="Center"
+                                   TextColor="White"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="SpinningTrainerTV.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:SpinningTrainerTV"
+    xmlns:views="clr-namespace:SpinningTrainerTV.ViewTV"
+    Title="SpinningTrainerTV"
+    BackgroundColor="{StaticResource Primary}"
+    FlyoutBackgroundColor="{StaticResource Primary}"
+    Shell.FlyoutBehavior="Disabled">
+
+    <ShellContent ContentTemplate="{DataTemplate views:SplashScreenViewTV}" Route="SplashScreenViewTV" />
+
+    <ShellContent ContentTemplate="{DataTemplate views:ConnectionViewTV}" Route="ConnectionViewTV" />
+
+    <ShellContent ContentTemplate="{DataTemplate views:SelectUserViewTV}" Route="SelectUserViewTV" />
+
+    <ShellContent ContentTemplate="{DataTemplate views:SessionListViewTV}" Route="SessionListViewTV" />
+
+    <ShellContent ContentTemplate="{DataTemplate views:PlaySessionViewTV}" Route="PlaySessionViewTV" />
+
+    <ShellContent ContentTemplate="{DataTemplate views:SessionFinalResultsViewTV}" Route="SessionFinalResultsViewTV" />
+</Shell>

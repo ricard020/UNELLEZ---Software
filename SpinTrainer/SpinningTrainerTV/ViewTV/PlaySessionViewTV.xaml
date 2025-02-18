@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SpinningTrainerTV.ViewTV.PlaySessionViewTV"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:mi="http://www.aathifmahir.com/dotnet/2022/maui/icons"
+    xmlns:micro="clr-namespace:Microcharts.Maui;assembly=Microcharts.Maui"
+    Title="{Binding SessionDescrip}"
+    Background="{StaticResource PrimaryDark}"
+    Loaded="ContentPage_Loaded"
+    Unloaded="ContentPage_Unloaded">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsEnabled="False" IsVisible="False" />
+    </Shell.BackButtonBehavior>
+
+    <Grid Padding="40,20,40,20">
+        <Grid.ColumnDefinitions>
+            <!--  Columna de Imágenes  -->
+            <ColumnDefinition Width="1*" />
+            <!--  Columna de Círculo  -->
+            <ColumnDefinition Width="1*" />
+            <!--  Columna de Datos de Mov.  -->
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <!--  Segunda fila añadida  -->
+        </Grid.RowDefinitions>
+
+        <!--  Contenedor de Imágenes (izq.)  -->
+        <Grid
+            Grid.Row="0"
+            Grid.Column="0"
+            ColumnSpacing="30"
+            RowSpacing="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Frame
+                Grid.Column="0"
+                BackgroundColor="White"
+                HeightRequest="200"
+                WidthRequest="200">
+                <Grid HorizontalOptions="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Label
+                        Grid.Row="0"
+                        FontSize="Subtitle"
+                        HorizontalTextAlignment="Start"
+                        Text="Guía de Mov."
+                        TextColor="{StaticResource BackgroundFrame}"
+                        VerticalTextAlignment="Start" />
+                    <Image
+                        Grid.Row="1"
+                        Aspect="AspectFit"
+                        HeightRequest="180"
+                        Source="{Binding CurrentExerciseImage}"
+                        WidthRequest="180" />
+                </Grid>
+            </Frame>
+
+            <Frame
+                Grid.Column="1"
+                BackgroundColor="#F8F8F8"
+                HeightRequest="200"
+                WidthRequest="200">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <Label
+                        Grid.Row="0"
+                        FontSize="Subtitle"
+                        HorizontalTextAlignment="Start"
+                        Text="Posición de Manos"
+                        TextColor="{StaticResource BackgroundFrame}" />
+                    <Image
+                        Grid.Row="1"
+                        Aspect="Fill"
+                        Source="{Binding CurrentHandsPositionImage, Mode=TwoWay}" />
+                </Grid>
+            </Frame>
+
+            <Frame Grid.Row="1" Grid.ColumnSpan="2">
+                <Label
+                    x:Name="lblCurrentEnergyZone"
+                    FontSize="Large"
+                    HorizontalTextAlignment="Center"
+                    TextColor="White" />
+            </Frame>
+
+        </Grid>
+
+        <!--  Contenedor Central  -->
+        <StackLayout Grid.Row="0" Grid.Column="1">
+
+            <Frame
+                CornerRadius="200"
+                HeightRequest="340"
+                WidthRequest="340">
+                <Grid HorizontalOptions="Center" VerticalOptions="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Label
+                        Grid.Row="0"
+                        FontSize="40"
+                        HorizontalTextAlignment="Center"
+                        Opacity="0.8"
+                        Text="{Binding ElapsedTime, StringFormat='{0:hh\\:mm\\:ss}'}"
+                        TextColor="White" />
+
+                    <StackLayout
+                        Grid.Row="1"
+                        HorizontalOptions="EndAndExpand"
+                        Orientation="Horizontal"
+                        Spacing="2">
+                        <Label
+                            FontSize="100"
+                            Text="{Binding CurrentResistanceValue, StringFormat='{0:0}'}"
+                            TextColor="White"
+                            VerticalTextAlignment="Center" />
+                        <Label
+                            FontSize="Medium"
+                            Text="R(%)"
+                            TextColor="White"
+                            VerticalOptions="Center" />
+                    </StackLayout>
+                    <Line
+                        Grid.Row="2"
+                        Stroke="White"
+                        X1="230"
+                        X2="0"
+                        Y1="0"
+                        Y2="0" />
+                    <StackLayout
+                        Grid.Row="3"
+                        HorizontalOptions="EndAndExpand"
+                        Orientation="Horizontal"
+                        Spacing="2">
+                        <Label
+                            FontSize="100"
+                            Text="{Binding CurrentRPMValue, StringFormat='{0:0}'}"
+                            TextColor="White"
+                            VerticalTextAlignment="Center" />
+                        <Label
+                            FontSize="Medium"
+                            Text="RPM"
+                            TextColor="White"
+                            VerticalOptions="Center" />
+                    </StackLayout>
+                </Grid>
+            </Frame>
+        </StackLayout>
+
+        <!--  Contenedor Derecha  -->
+        <StackLayout
+            Grid.Row="0"
+            Grid.Column="2"
+            Orientation="Vertical"
+            Spacing="10">
+            <Frame Margin="0" HorizontalOptions="FillAndExpand">
+                <StackLayout HorizontalOptions="FillAndExpand" Orientation="Vertical">
+                    <Label
+                        FontSize="Large"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding CurrentExerciseName}"
+                        TextColor="White" />
+                </StackLayout>
+            </Frame>
+
+            <!--  Nueva disposición de los Frames  -->
+            <Grid ColumnSpacing="10" RowSpacing="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <!--  Frame de Tiempo  -->
+                <Frame Grid.Row="0" Grid.Column="0">
+                    <StackLayout
+                        Padding="10"
+                        HorizontalOptions="FillAndExpand"
+                        Orientation="Horizontal"
+                        Spacing="10">
+                        <Image Source="{mi:Material Icon=Timer, IconSize=45, IconColor=#4ade80}" />
+                        <Label
+                            FontSize="Medium"
+                            Text="{Binding ElapsedExerciseTime, StringFormat='{0:hh\\:mm\\:ss}'}"
+                            TextColor="White"
+                            VerticalOptions="Center" />
+                    </StackLayout>
+                </Frame>
+
+                <!--  Frame adicional  -->
+                <Frame Grid.Row="0" Grid.Column="1">
+                    <StackLayout
+                        Padding="0,10,0,10"
+                        Orientation="Horizontal"
+                        Spacing="10">
+                        <Image Source="{mi:Material Icon=ShutterSpeed, IconSize=45, IconColor=#fcd34d}" />
+                        <Label
+                            FontSize="Medium"
+                            Text="{Binding CurrentRPMRange}"
+                            TextColor="White"
+                            VerticalOptions="Center" />
+                    </StackLayout>
+                </Frame>
+
+                <!--  Frame de Porcentajes  -->
+                <Frame Grid.Row="1" Grid.ColumnSpan="2">
+                    <StackLayout
+                        Padding="0,10,0,10"
+                        HorizontalOptions="Center"
+                        Orientation="Horizontal"
+                        Spacing="10">
+                        <Image Source="{mi:Material Icon=MonitorHeart, IconSize=45, IconColor=#ef4444}" />
+                        <Label
+                            FontSize="Medium"
+                            Text="{Binding CurrentRangeFCM}"
+                            TextColor="White"
+                            VerticalOptions="Center" />
+                    </StackLayout>
+                </Frame>
+            </Grid>
+
+        </StackLayout>
+
+        <!--  Segunda fila con HorizontalStackLayout para gráfica de Sesión  -->
+        <Grid
+            Grid.Row="1"
+            Grid.ColumnSpan="3"
+            BackgroundColor="Transparent">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+
+            <GraphicsView x:Name="graphicsView" />
+        </Grid>
+    </Grid>
+</ContentPage>

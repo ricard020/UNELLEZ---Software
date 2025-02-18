@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SpinningTrainer.Views.UserDetailsView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:SpinningTrainer.Resources.Converters"
+    xmlns:viewModel="clr-namespace:SpinningTrainer.ViewModels"
+    Title="Detalles de Usuario"
+    BackgroundColor="{StaticResource PrimaryDark}"
+    Loaded="ContentPage_Loaded">
+    <ContentPage.Resources>
+        <converters:IsTrainerConverter x:Key="IsTrainerConverter" />
+        <converters:NotIsSuperUserConverter x:Key="NotIsSuperUserConverter" />
+    </ContentPage.Resources>
+
+    <Grid Padding="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="0.1*" />
+        </Grid.RowDefinitions>
+
+        <VerticalStackLayout Grid.Row="0">
+            <!--  Sección de pestañas con RadioButtons  -->
+            <Grid ColumnDefinitions="*,*,*" HorizontalOptions="FillAndExpand">
+
+                <!--  RadioButtons como pestañas  -->
+                <RadioButton
+                    x:Name="rbtPrincipalDataPanel"
+                    Grid.Column="0"
+                    CheckedChanged="OnTabCheckedChanged"
+                    Content="Datos de Cuenta"
+                    GroupName="Tabs"
+                    Value="0" />
+
+                <RadioButton
+                    x:Name="rbtAditionalsDetailsPanel"
+                    Grid.Column="1"
+                    CheckedChanged="OnTabCheckedChanged"
+                    Content="Membresía"
+                    GroupName="Tabs"
+                    IsVisible="{Binding NewTipoUsuario, Converter={StaticResource IsTrainerConverter}}"
+                    Value="1" />
+
+                <!--  Línea resaltada  -->
+                <BoxView
+                    x:Name="HighlightLine"
+                    Grid.Row="1"
+                    BackgroundColor="DodgerBlue"
+                    HeightRequest="2"
+                    HorizontalOptions="Center"
+                    VerticalOptions="End"
+                    WidthRequest="100" />
+            </Grid>
+
+            <!--  Contenido de cada pestaña en un Grid  -->
+            <Grid>
+                <ContentView x:Name="PrincipalDataPanel" IsVisible="{Binding EsPestañaSeleccionada, ConverterParameter=0}">
+                    <ScrollView Grid.Row="0" BackgroundColor="Transparent">
+                        <StackLayout Padding="20" Spacing="20">
+                            <StackLayout Spacing="10">
+                                <Label
+                                    IsVisible="{Binding NotEditingCurrentUserProfile}"
+                                    Text="Selecciona el Tipo de Usuario:"
+                                    TextColor="White" />
+                                <Frame IsVisible="{Binding NotEditingCurrentUserProfile}">
+                                    <VerticalStackLayout>
+                                        <Picker
+                                            x:Name="pkTipoUsuario"
+                                            SelectedIndex="{Binding NewTipoUsuario}"
+                                            Style="{StaticResource CustomPicker}">
+                                            <Picker.Items>
+                                                <x:String>Super Usuario</x:String>
+                                                <x:String>Administrador</x:String>
+                                                <x:String>Entrenador</x:String>
+                                            </Picker.Items>
+                                        </Picker>
+                                    </VerticalStackLayout>
+                                </Frame>
+
+                                <Label Text="Código Usuario:" TextColor="White" />
+                                <Frame>
+                                    <VerticalStackLayout>
+                                        <Entry
+                                            x:Name="entUsuario"
+                                            BackgroundColor="{StaticResource BackgroundFrame}"
+                                            Placeholder="Ingrese código de usuario"
+                                            Style="{StaticResource CustomEntry}"
+                                            Text="{Binding NewCodUsua}" />
+                                    </VerticalStackLayout>
+                                </Frame>
+                                <Label
+                                    x:Name="lblMensajeYaExisteCodUsua"
+                                    HorizontalTextAlignment="Center"
+                                    IsVisible="{Binding CodExists}"
+                                    Text="*Código de usuario ya existe*"
+                                    TextColor="Red" />
+
+                                <Label Text="Nombre y Apellido:" TextColor="White" />
+                                <Frame>
+                                    <VerticalStackLayout>
+                                        <Entry
+                                            x:Name="entNombreApellido"
+                                            BackgroundColor="Transparent"
+                                            FontSize="Medium"
+                                            Placeholder="Ingrese nombre y apellido"
+                                            Text="{Binding NewDescrip}"
+                                            TextColor="White" />
+                                    </VerticalStackLayout>
+                                </Frame>
+
+                                <Label Text="Contraseña:" TextColor="White" />
+                                <Frame>
+                                    <VerticalStackLayout>
+                                        <Entry
+                                            x:Name="entContra"
+                                            IsPassword="True"
+                                            Placeholder="Ingrese la contraseña"
+                                            Style="{StaticResource CustomEntry}"
+                                            Text="{Binding NewContra}" />
+                                    </VerticalStackLayout>
+                                </Frame>
+
+                                <Label Text="Confirmar Contraseña:" TextColor="White" />
+                                <Frame>
+                                    <VerticalStackLayout>
+                                        <Entry
+                                            x:Name="entConfirmarContra"
+                                            FontSize="Medium"
+                                            IsPassword="True"
+                                            Placeholder="Confirme la contraseña"
+                                            Style="{StaticResource CustomEntry}"
+                                            Text="{Binding NewConfirmContra}" />
+                                    </VerticalStackLayout>
+                                </Frame>
+
+                                <Label Text="Email:" TextColor="White" />
+                                <Frame>
+                                    <VerticalStackLayout>
+                                        <Entry
+                                            x:Name="entEmail"
+                                            Placeholder="Ingrese el email"
+                                            Style="{StaticResource CustomEntry}"
+                                            Text="{Binding NewEmail}" />
+                                    </VerticalStackLayout>
+                                </Frame>
+
+                                <Label Text="Teléfono:" TextColor="White" />
+                                <Frame>
+                                    <VerticalStackLayout>
+                                        <Entry
+                                            x:Name="entTelef"
+                                            Placeholder="Ingrese el teléfono"
+                                            Style="{StaticResource CustomEntry}"
+                                            Text="{Binding NewTelef}" />
+                                    </VerticalStackLayout>
+                                </Frame>
+                            </StackLayout>
+                        </StackLayout>
+                    </ScrollView>
+                </ContentView>
+
+                <ContentView x:Name="AditionalsDetailsPanel" IsVisible="{Binding EsPestañaSeleccionada, ConverterParameter=1}">
+                    <ScrollView Grid.Row="0" BackgroundColor="Transparent">
+                        <StackLayout Padding="20" Spacing="20">
+                            <StackLayout Spacing="10">
+                                <Label Text="PIN:" TextColor="White" />
+
+                                <Frame>
+                                    <VerticalStackLayout>
+                                        <Entry
+                                            x:Name="entPIN"
+                                            FontSize="Medium"
+                                            Keyboard="Numeric"
+                                            MaxLength="4"
+                                            Placeholder="Ingrese el PIN"
+                                            Style="{StaticResource CustomEntry}"
+                                            Text="{Binding NewPIN}" />
+                                    </VerticalStackLayout>
+                                </Frame>
+
+                                <Grid ColumnSpacing="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <!--  Fecha de Renovación  -->
+                                    <VerticalStackLayout Grid.Column="0" Spacing="5">
+                                        <Label Text="Fecha de Renovación:" TextColor="White" />
+                                        <Frame>
+                                            <VerticalStackLayout>
+                                                <DatePicker
+                                                    x:Name="entFechaR"
+                                                    BackgroundColor="Transparent"
+                                                    Date="{Binding NewFechaR}"
+                                                    FontSize="Medium"
+                                                    IsEnabled="False"
+                                                    TextColor="White" />
+                                            </VerticalStackLayout>
+                                        </Frame>
+                                    </VerticalStackLayout>
+
+                                    <!--  Fecha de Vencimiento  -->
+                                    <VerticalStackLayout Grid.Column="1" Spacing="5">
+                                        <Label Text="Fecha de Vencimiento:" TextColor="White" />
+                                        <Frame>
+                                            <VerticalStackLayout>
+                                                <DatePicker
+                                                    x:Name="entFechaV"
+                                                    BackgroundColor="Transparent"
+                                                    Date="{Binding NewFechaV}"
+                                                    FontSize="Medium"
+                                                    IsEnabled="False"
+                                                    TextColor="White" />
+                                            </VerticalStackLayout>
+                                        </Frame>
+                                    </VerticalStackLayout>
+                                </Grid>
+
+                                <VerticalStackLayout
+                                    Margin="13,16,13,0"
+                                    IsVisible="{Binding EditionEnable}"
+                                    VerticalOptions="Center">
+                                    <Button
+                                        Background="{StaticResource Primary}"
+                                        Command="{Binding IncrementMembershipCommand}"
+                                        FontSize="25"
+                                        Text="Renovar Membresía"
+                                        VerticalOptions="CenterAndExpand" />
+                                </VerticalStackLayout>
+                            </StackLayout>
+                        </StackLayout>
+                    </ScrollView>
+                </ContentView>
+            </Grid>
+        </VerticalStackLayout>
+        <Grid Grid.Row="1" Background="{StaticResource PrimaryDark}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Button
+                Grid.Column="0"
+                Margin="0,-2,28,0"
+                BackgroundColor="#16a34a"
+                BorderColor="Transparent"
+                Command="{Binding SaveUserCommand}"
+                HeightRequest="60"
+                HorizontalOptions="CenterAndExpand"
+                Text="Guardar"
+                TextColor="white"
+                WidthRequest="120" />
+            <Button
+                Grid.Column="1"
+                Margin="45,0,24,0"
+                BackgroundColor="DarkRed"
+                BorderColor="DarkRed"
+                Command="{Binding DeleteUserCommand}"
+                HeightRequest="60"
+                HorizontalOptions="CenterAndExpand"
+                IsEnabled="{Binding NewTipoUsuario, Converter={StaticResource NotIsSuperUserConverter}}"
+                IsVisible="{Binding EditionEnable}"
+                Text="Eliminar"
+                TextColor="#FFFFFF"
+                WidthRequest="120" />
+        </Grid>
+    </Grid>
+</ContentPage>

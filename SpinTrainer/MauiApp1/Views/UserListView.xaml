@@ -1,0 +1,157 @@
+<ContentPage
+    x:Class="SpinningTrainer.Views.UserListView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:SpinningTrainer.Resources.Converters"
+    xmlns:mi="http://www.aathifmahir.com/dotnet/2022/maui/icons"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:viewModel="clr-namespace:SpinningTrainer.ViewModels"
+    Title="Lista de Usuarios">
+
+    <ContentPage.Resources>
+        <converters:UserTypeConverter x:Key="UserTyperConverter" />
+        <converters:IsTrainerConverter x:Key="IsTrainerConverter" />
+    </ContentPage.Resources>
+
+    <Grid Padding="0" BackgroundColor="{StaticResource Primary}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackLayout
+            Grid.Row="1"
+            Padding="10"
+            BackgroundColor="{StaticResource PrimaryDark}">
+            <ListView
+                x:Name="ltvUserListView"
+                Margin="0,10,0,10"
+                BackgroundColor="Transparent"
+                IsPullToRefreshEnabled="True"
+                IsRefreshing="{Binding ReloadingUsersList}"
+                ItemTapped="ltvUserListView_ItemTapped"
+                ItemsSource="{Binding Users}"
+                RefreshCommand="{Binding RefreshUserListCommand}"
+                RowHeight="120"
+                SelectedItem="{Binding SelectedUser}"
+                SelectionMode="None"
+                SeparatorColor="Transparent">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <VerticalStackLayout>
+                                <Frame
+                                    Margin="0,10,0,0"
+                                    Padding="5"
+                                    HasShadow="False">
+                                    <Grid Padding="-20" BackgroundColor="{StaticResource BackgroundFrame}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="0.5*" />
+                                        </Grid.ColumnDefinitions>
+                                        <StackLayout
+                                            Grid.Column="0"
+                                            Margin="30,10,0,10"
+                                            Orientation="Vertical">
+                                            <Label
+                                                Margin="0,10,0,5"
+                                                HorizontalOptions="StartAndExpand"
+                                                Style="{StaticResource CustomLabelTittles}"
+                                                VerticalOptions="Center">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span
+                                                            FontAttributes="Bold"
+                                                            Text="{Binding Username}"
+                                                            TextColor="White" />
+                                                        <Span
+                                                            FontAttributes="Bold"
+                                                            Text=" - "
+                                                            TextColor="White" />
+                                                        <Span
+                                                            FontAttributes="Bold"
+                                                            Text="{Binding Descrip}"
+                                                            TextColor="White" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+
+                                            <Label
+                                                Margin="0,10,0,5"
+                                                HorizontalOptions="StartAndExpand"
+                                                Style="{StaticResource CustomLabelInfo}"
+                                                VerticalOptions="Center">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding UserType, Converter={StaticResource UserTyperConverter}}" TextColor="White" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+
+                                            <Label
+                                                Margin="0,10,0,10"
+                                                HorizontalOptions="StartAndExpand"
+                                                TextColor="White"
+                                                VerticalOptions="Center">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding Email}" TextColor="White" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                        </StackLayout>
+                                        <StackLayout
+                                            Grid.Column="1"
+                                            Margin="0,10,30,10"
+                                            HorizontalOptions="EndAndExpand"
+                                            Orientation="Vertical">
+                                            <Label
+                                                Margin="0,10,0,10"
+                                                HorizontalOptions="CenterAndExpand"
+                                                IsVisible="{Binding UserType, Converter={StaticResource IsTrainerConverter}}"
+                                                Text="Membresia"
+                                                TextColor="White"
+                                                VerticalOptions="Center" />
+                                            <Label
+                                                Margin="0,10,0,10"
+                                                IsVisible="{Binding UserType, Converter={StaticResource IsTrainerConverter}}"
+                                                TextColor="White"
+                                                VerticalOptions="Center">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding DateV, StringFormat='{0:dd/MM/yyyy}'}" TextColor="White" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                        </StackLayout>
+                                    </Grid>
+                                </Frame>
+                            </VerticalStackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+
+        <StackLayout
+            Grid.Row="2"
+            Padding="10"
+            BackgroundColor="{StaticResource BackgroundFrame}">
+            <VerticalStackLayout HorizontalOptions="Center" Spacing="2">
+                <Button
+                    x:Name="btnAgregarUsers"
+                    BackgroundColor="{StaticResource Primary}"
+                    BorderWidth="0"
+                    Command="{Binding AddNewUserCommand}"
+                    CornerRadius="150"
+                    HeightRequest="60"
+                    ImageSource="{mi:Material Icon=Add,
+                                              IconSize=100}"
+                    WidthRequest="60" />
+                <Label Text="Agregar Usuario" />
+            </VerticalStackLayout>
+
+        </StackLayout>
+    </Grid>
+</ContentPage>

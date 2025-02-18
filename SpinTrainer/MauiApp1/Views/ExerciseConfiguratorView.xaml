@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SpinningTrainer.Views.ExerciseConfiguratorView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:charts="clr-namespace:Microcharts.Maui;assembly=Microcharts.Maui"
+    xmlns:converters="clr-namespace:SpinningTrainer.Resources.Converters"
+    xmlns:mi="http://www.aathifmahir.com/dotnet/2022/maui/icons"
+    Title="Personalizar Descanso"
+    Padding="15"
+    Background="{StaticResource PrimaryDark}">
+    <ContentPage.Resources>
+        <converters:NotConverter x:Key="NotConverter" />
+    </ContentPage.Resources>
+
+
+    <ScrollView>
+        <StackLayout Margin="10" HorizontalOptions="FillAndExpand">
+            <!--  Título de la sección  -->
+            <Label
+                Margin="0,0,0,20"
+                FontAttributes="Bold"
+                Style="{StaticResource CustomSectionTittles}"
+                Text="Datos de Ejercicio" />
+
+            <!--  Fila 1: Solo picker del ejercicio con su label  -->
+            <StackLayout Margin="0,0,0,20" Orientation="Vertical">
+                <Label
+                    Margin="0,0,0,10"
+                    FontSize="18"
+                    Text="Ejercicio" />
+                <Frame HorizontalOptions="FillAndExpand">
+                    <Grid ColumnSpacing="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image
+                            Grid.Column="0"
+                            Source="{mi:Material Icon=DirectionsBike}"
+                            VerticalOptions="Center" />
+                        <Picker
+                            x:Name="exercisePicker"
+                            Title="Selecciona un ejercicio"
+                            Grid.Column="1"
+                            HeightRequest="50"
+                            HorizontalOptions="FillAndExpand"
+                            ItemDisplayBinding="{Binding Descrip}"
+                            ItemsSource="{Binding ExercisesList}"
+                            SelectedItem="{Binding SelectedExercise, Mode=TwoWay}"
+                            Style="{StaticResource CustomPicker}" />
+                    </Grid>
+                </Frame>
+            </StackLayout>
+
+            <!--  Fila 2: Incrementadores/Decrementadores de valores RPM  -->
+            <StackLayout
+                Margin="0,0,0,20"
+                Orientation="Horizontal"
+                Spacing="20">
+
+
+                <!--  RPM Med  -->
+                <VerticalStackLayout>
+                    <Label FontSize="16" Text="RPM Medio" />
+                    <Frame
+                        Margin="0"
+                        Padding="10"
+                        Background="{StaticResource BackgroundFrame}"
+                        HorizontalOptions="StartAndExpand">
+                        <HorizontalStackLayout>
+                            <!--  Botón de decremento  -->
+                            <Button
+                                Pressed="StartDecreaseRPMMed"
+                                Released="StopRepeatAction"
+                                Text="-"
+                                WidthRequest="40" />
+
+                            <!--  Etiqueta que muestra el valor actual  -->
+                            <Label
+                                x:Name="RPMMedLabel"
+                                FontSize="16"
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding RPMMed}"
+                                VerticalOptions="Center"
+                                WidthRequest="50" />
+
+                            <!--  Botón de incremento  -->
+                            <Button
+                                Pressed="StartIncreaseRPMMed"
+                                Released="StopRepeatAction"
+                                Text="+"
+                                WidthRequest="40" />
+                        </HorizontalStackLayout>
+                    </Frame>
+                </VerticalStackLayout>
+
+                <!--  RPM Fin  -->
+
+                <VerticalStackLayout>
+                    <Label FontSize="16" Text="RPM Fin" />
+                    <Frame
+                        Margin="0"
+                        Padding="10"
+                        Background="{StaticResource BackgroundFrame}"
+                        HorizontalOptions="StartAndExpand">
+                        <HorizontalStackLayout>
+                            <!--  Botón de decremento  -->
+                            <Button
+                                Pressed="StartDecreaseRPMFin"
+                                Released="StopRepeatAction"
+                                Text="-"
+                                WidthRequest="40" />
+
+                            <!--  Etiqueta que muestra el valor actual  -->
+                            <Label
+                                x:Name="RPMFinLabel"
+                                FontSize="16"
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding RPMFin}"
+                                VerticalOptions="Center"
+                                WidthRequest="50" />
+
+                            <!--  Botón de incremento  -->
+                            <Button
+                                Pressed="StartIncreaseRPMFin"
+                                Released="StopRepeatAction"
+                                Text="+"
+                                WidthRequest="40" />
+                        </HorizontalStackLayout>
+                    </Frame>
+                </VerticalStackLayout>
+
+            </StackLayout>
+
+            <!--  Fila 3:  -->
+            <Grid ColumnSpacing="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!--  Izquierda de fila 3: Picker de manos y cuadro de vista previa  -->
+                <StackLayout Grid.Column="0" Orientation="Vertical">
+                    <Label
+                        Margin="0,0,0,10"
+                        FontSize="18"
+                        Text="Pos. de Manos" />
+                    <Frame Margin="0,0,0,10" HorizontalOptions="FillAndExpand">
+                        <Grid ColumnSpacing="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Image
+                                Grid.Column="0"
+                                Source="{mi:Material Icon=SignLanguage}"
+                                VerticalOptions="Center" />
+                            <Picker
+                                Title="Seleccionar"
+                                Grid.Column="1"
+                                HeightRequest="50"
+                                HorizontalOptions="FillAndExpand"
+                                IsEnabled="{Binding HasSelectedExercise}"
+                                ItemDisplayBinding="{Binding .}"
+                                ItemsSource="{Binding HandsPositions}"
+                                SelectedIndex="{Binding SelectedHandsPositionIndex}"
+                                SelectedItem="{Binding SelectedHandsPosition}"
+                                Style="{StaticResource CustomPicker}" />
+                        </Grid>
+                    </Frame>
+
+                    <Frame BackgroundColor="white" HorizontalOptions="FillAndExpand">
+                        <Grid BackgroundColor="Transparent">
+                            <Label
+                                Margin="0,0,0,10"
+                                FontSize="18"
+                                IsVisible="{Binding NotHandsPositionAreSelected}"
+                                Text="Vista prev.  (Pos. Manos)"
+                                TextColor="{StaticResource PrimaryDark}"
+                                VerticalTextAlignment="Center" />
+                            <Image
+                                Aspect="AspectFit"
+                                HeightRequest="200"
+                                IsVisible="{Binding HandsPositionAreSelected}"
+                                Source="{Binding SelectedHandsPositionImage}" />
+                        </Grid>
+                    </Frame>
+                </StackLayout>
+
+                <!--  Derecha de fila 3: Valores de resistencia y zona de energía  -->
+                <StackLayout
+                    Grid.Column="1"
+                    Orientation="Vertical"
+                    Spacing="0">
+                    <Label
+                        Margin="0,0,0,10"
+                        FontSize="18"
+                        Text="Duración (Minutos)" />
+
+                    <Frame
+                        Margin="0"
+                        Padding="10"
+                        Background="{StaticResource BackgroundFrame}"
+                        HorizontalOptions="StartAndExpand">
+                        <HorizontalStackLayout>
+                            <!--  Botón de decremento  -->
+                            <Button
+                                Pressed="StartDecreaseDurationMin"
+                                Released="StopRepeatAction"
+                                Text="-"
+                                WidthRequest="40" />
+
+                            <!--  Etiqueta que muestra el valor actual  -->
+                            <Label
+                                x:Name="DurationMinLabel"
+                                FontSize="16"
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding DurationMin}"
+                                VerticalOptions="Center"
+                                WidthRequest="50" />
+
+                            <!--  Botón de incremento  -->
+                            <Button
+                                Pressed="StartIncreaseDurationMin"
+                                Released="StopRepeatAction"
+                                Text="+"
+                                WidthRequest="40" />
+                        </HorizontalStackLayout>
+                    </Frame>
+
+                    <StackLayout Margin="0,10,0,0">
+                        <Label FontSize="18" Text="Resistencia (%)" />
+                        <Frame
+                            Margin="0,10,0,0"
+                            Padding="10"
+                            Background="{StaticResource BackgroundFrame}"
+                            HorizontalOptions="StartAndExpand">
+                            <HorizontalStackLayout>
+                                <!--  Botón de decremento  -->
+                                <Button
+                                    Pressed="StartDecreaseResistance"
+                                    Released="StopRepeatAction"
+                                    Text="-"
+                                    WidthRequest="40" />
+
+                                <!--  Etiqueta que muestra el valor actual  -->
+                                <Label
+                                    x:Name="ResistancePercentageLabel"
+                                    FontSize="16"
+                                    HorizontalOptions="Center"
+                                    HorizontalTextAlignment="Center"
+                                    Text="{Binding ResistancePercentage}"
+                                    VerticalOptions="Center"
+                                    WidthRequest="50" />
+
+                                <!--  Botón de incremento  -->
+                                <Button
+                                    Pressed="StartIncreaseResistance"
+                                    Released="StopRepeatAction"
+                                    Text="+"
+                                    WidthRequest="40" />
+                            </HorizontalStackLayout>
+                        </Frame>
+                    </StackLayout>
+
+                </StackLayout>
+
+
+            </Grid>
+
+            <StackLayout>
+                <Label
+                    Margin="0,10,0,10"
+                    FontSize="18"
+                    Text="Zonas de Energia (Desde - Hasta)" />
+
+                <Frame HorizontalOptions="FillAndExpand">
+                    <Grid ColumnSpacing="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image
+                            Grid.Column="0"
+                            Source="{mi:Material Icon=ElectricBike}"
+                            VerticalOptions="Center" />
+                        <Entry
+                            Grid.Column="1"
+                            HeightRequest="50"
+                            HorizontalOptions="FillAndExpand"
+                            IsEnabled="False"
+                            Style="{StaticResource CustomPicker}"
+                            Text="{Binding EnergyZoneFrom}"
+                            TextColor="White" />
+                    </Grid>
+                </Frame>
+
+                <Frame Margin="0,10,0,0" HorizontalOptions="FillAndExpand">
+                    <Grid ColumnSpacing="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image
+                            Grid.Column="0"
+                            Source="{mi:Material Icon=ElectricBike}"
+                            VerticalOptions="Center" />
+                        <Entry
+                            Grid.Column="1"
+                            HeightRequest="50"
+                            HorizontalOptions="FillAndExpand"
+                            IsEnabled="False"
+                            Style="{StaticResource CustomPicker}"
+                            Text="{Binding EnergyZoneTo}"
+                            TextColor="White" />
+                    </Grid>
+                </Frame>
+            </StackLayout>
+
+            <!--  Botón Modificar/Eliminar  -->
+            <Grid
+                Margin="0,20,0,0"
+                ColumnSpacing="20"
+                IsVisible="{Binding EditionExerciseEnable}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Button
+                    Grid.Column="0"
+                    BackgroundColor="{StaticResource Primary}"
+                    Command="{Binding SaveRestingCommand}"
+                    CornerRadius="10"
+                    FontSize="20"
+                    HeightRequest="60"
+                    HorizontalOptions="FillAndExpand"
+                    IsVisible="{Binding EditionExerciseEnable, Converter={StaticResource Key=NotConverter}}"
+                    Text="Guardar Ejercicio"
+                    TextColor="White" />
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

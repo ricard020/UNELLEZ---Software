@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SpinTrainer.Views.SessionExerciseResistanceAndTimeView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:mi="http://www.aathifmahir.com/dotnet/2022/maui/icons"
+    Title="Ingresar Duración de Ejercicio"
+    Padding="15"
+    Background="{StaticResource PrimaryDark}">
+    <VerticalStackLayout>
+
+        <StackLayout Margin="0,0,0,20" Orientation="Vertical">
+
+            <HorizontalStackLayout>
+                <Image Source="{mi:Material Icon=Timelapse}" VerticalOptions="Center" />
+                <Label
+                    Margin="0,0,0,0"
+                    FontSize="18"
+                    Text="Duración (en minutos):" />
+            </HorizontalStackLayout>
+            <Frame
+                Margin="0"
+                Padding="10"
+                Background="{StaticResource BackgroundFrame}"
+                HorizontalOptions="FillAndExpand">
+                <HorizontalStackLayout>
+                    <Button
+                        Pressed="StartDecreaseDurationMin"
+                        Released="StopRepeatAction"
+                        Text="-"
+                        WidthRequest="40" />
+                    <Label
+                        x:Name="SpinnerLabelDurationMin"
+                        FontSize="16"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding DurationMin}"
+                        VerticalOptions="Center"
+                        WidthRequest="50" />
+                    <Button
+                        Pressed="StartIncreaseDurationMin"
+                        Released="StopRepeatAction"
+                        Text="+"
+                        WidthRequest="40" />
+                </HorizontalStackLayout>
+            </Frame>
+        </StackLayout>
+
+
+
+        <Button
+            Margin="0,20,0,0"
+            Clicked="Button_Clicked"
+            Text="Siguiente" />
+    </VerticalStackLayout>
+
+</ContentPage>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+		<item name="android:windowNoTitle">true</item>
+		<item name="android:colorBackground">@android:color/transparent</item>
+		<item name="android:windowFullscreen">true</item>
+	</style>
+	
+    <color name="colorPrimary">#FF7500</color>
+    <color name="colorPrimaryDark">#E66700</color>
+    <color name="colorAccent">#e08417</color>
+
+	<declare-styleable name='SKCanvasView'>
+		<attr name='ignorePixelScaling' format='boolean'/>
+	</declare-styleable>
+</resources>

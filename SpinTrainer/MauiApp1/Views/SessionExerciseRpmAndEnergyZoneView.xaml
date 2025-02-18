@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SpinTrainer.Views.SessionExerciseRpmAndEnergyZoneView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:mi="http://www.aathifmahir.com/dotnet/2022/maui/icons"
+    Title="Ingresar valores RPM de Ejercicio"
+    Padding="15"
+    Background="{StaticResource PrimaryDark}">
+    <VerticalStackLayout Grid.Column="1">
+        <StackLayout Margin="0,0,0,20" Orientation="Vertical">
+            <Label
+                Margin="0,0,0,10"
+                FontSize="18"
+                Text="Valores RPM:" />
+            <Grid ColumnSpacing="10" RowSpacing="12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    FontSize="16"
+                    HorizontalOptions="Start"
+                    Text="RPM Medio" />
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    FontSize="16"
+                    HorizontalOptions="Start"
+                    Text="RPM Final" />
+                <Frame
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Margin="0"
+                    Padding="10"
+                    Background="{StaticResource BackgroundFrame}"
+                    HorizontalOptions="FillAndExpand">
+                    <HorizontalStackLayout>
+                        <Button
+                            Pressed="StartDecreaseRPMMed"
+                            Released="StopRepeatAction"
+                            Text="-"
+                            WidthRequest="40" />
+                        <Label
+                            x:Name="SpinnerLabelRPMMed"
+                            FontSize="16"
+                            HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            Text="{Binding RPMMed}"
+                            VerticalOptions="Center"
+                            WidthRequest="50" />
+                        <Button
+                            Pressed="StartIncreaseRPMMed"
+                            Released="StopRepeatAction"
+                            Text="+"
+                            WidthRequest="40" />
+                    </HorizontalStackLayout>
+                </Frame>
+                <Frame
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="0"
+                    Padding="10"
+                    Background="{StaticResource BackgroundFrame}"
+                    HorizontalOptions="FillAndExpand">
+                    <HorizontalStackLayout>
+                        <Button
+                            Pressed="StartDecreaseRPMFin"
+                            Released="StopRepeatAction"
+                            Text="-"
+                            WidthRequest="40" />
+                        <Label
+                            x:Name="SpinnerLabelRPMFin"
+                            FontSize="16"
+                            HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            Text="{Binding RPMFin}"
+                            VerticalOptions="Center"
+                            WidthRequest="50" />
+                        <Button
+                            Pressed="StartIncreaseRPMFin"
+                            Released="StopRepeatAction"
+                            Text="+"
+                            WidthRequest="40" />
+                    </HorizontalStackLayout>
+                </Frame>
+            </Grid>
+        </StackLayout>
+        <StackLayout Margin="0,0,0,20" Orientation="Vertical">
+            <Label
+                Margin="0,0,0,10"
+                FontSize="18"
+                Text="Zonas de energía:" />
+            <Label Text="* El valor mínimo debe ser 50 y el máximo 100." />
+            <Frame Margin="0,10,0,0" HorizontalOptions="FillAndExpand">
+                <Grid ColumnSpacing="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Image
+                        Grid.Column="0"
+                        Source="{mi:Material Icon=ElectricBike}"
+                        VerticalOptions="Center" />
+                    <Entry
+                        Grid.Column="1"
+                        HeightRequest="50"
+                        HorizontalOptions="FillAndExpand"
+                        IsEnabled="False"
+                        Placeholder="Zona inicial"
+                        Style="{StaticResource CustomPicker}"
+                        Text="{Binding EnergyZoneFrom}"
+                        TextColor="white" />
+                </Grid>
+            </Frame>
+            <Frame Margin="0,10,0,0" HorizontalOptions="FillAndExpand">
+                <Grid ColumnSpacing="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Image
+                        Grid.Column="0"
+                        Source="{mi:Material Icon=ElectricBike}"
+                        VerticalOptions="Center" />
+                    <Entry
+                        Grid.Column="1"
+                        HeightRequest="50"
+                        HorizontalOptions="FillAndExpand"
+                        IsEnabled="False"
+                        Placeholder="Zona final"
+                        Style="{StaticResource CustomPicker}"
+                        Text="{Binding EnergyZoneTo}"
+                        TextColor="white" />
+                </Grid>
+            </Frame>
+        </StackLayout>
+        <StackLayout Margin="0,0,0,20" Orientation="Vertical">
+            <HorizontalStackLayout>
+                <Image
+                    Grid.Column="0"
+                    Margin="0,0,10,10"
+                    Source="{mi:Material Icon=Percent}"
+                    VerticalOptions="Center" />
+                <Label
+                    Margin="0,0,0,0"
+                    FontSize="18"
+                    Text="Resistencia:" />
+            </HorizontalStackLayout>
+            <Frame
+                Grid.Row="0"
+                Margin="0"
+                Padding="10"
+                Background="{StaticResource BackgroundFrame}"
+                HorizontalOptions="StartAndExpand">
+                <HorizontalStackLayout>
+                    <Button
+                        Pressed="StartDecreaseResistance"
+                        Released="StopRepeatAction"
+                        Text="-"
+                        WidthRequest="40" />
+                    <Label
+                        x:Name="SpinnerLabelResistancePercentage"
+                        FontSize="16"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding ResistancePercentage}"
+                        VerticalOptions="Center"
+                        WidthRequest="50" />
+                    <Button
+                        Pressed="StartIncreaseResistance"
+                        Released="StopRepeatAction"
+                        Text="+"
+                        WidthRequest="40" />
+                </HorizontalStackLayout>
+            </Frame>
+        </StackLayout>
+        <Button
+            Margin="0,10,0,0"
+            Clicked="Button_Clicked"
+            Text="Siguiente" />
+    </VerticalStackLayout>
+</ContentPage>

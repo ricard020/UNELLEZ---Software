@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SpinningTrainerTV.ViewTV.SplashScreenViewTV"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:mi="http://www.aathifmahir.com/dotnet/2022/maui/icons"
+    Background="{StaticResource PrimaryDark}"
+    Loaded="ContentPage_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.7*" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Image
+            Grid.Row="0"
+            Background="White"
+            Source="logosplash.png" />
+
+
+        <VerticalStackLayout Grid.Row="1">
+            <Label
+                Margin="5,0,5,0"
+                FontAttributes="Bold"
+                FontSize="38"
+                HorizontalTextAlignment="Center"
+                Scale="1"
+                Text="Bienvenido"
+                TextColor="White" />
+
+            <Frame
+                Margin="0,0,0,0"
+                Padding="0"
+                BackgroundColor="Transparent"
+                CornerRadius="10"
+                HasShadow="False"
+                HeightRequest="100">
+                <VerticalStackLayout>
+                    <Label
+                        x:Name="lblTituloConsejo"
+                        Margin="5,20,5,0"
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding TipTitle}"
+                        TextColor="White" />
+
+
+                    <Label
+                        x:Name="lblConsejo"
+                        Margin="10,10,10,0"
+                        FontSize="16"
+                        HorizontalTextAlignment="Center"
+                        Text="No des por sentado que todo está en orden. Comprueba la configuración adecuada de las bicicletas para alumnos nuevos y experimentados. Haz los ajustes necesarios para garantizar una postura cómoda y segura."
+                        TextColor="White" />
+                </VerticalStackLayout>
+            </Frame>
+
+
+            <Image
+                x:Name="LoadingIcon"
+                Margin="0,10,0,10"
+                Source="{mi:Material Icon=Settings,
+                                     IconSize=50}" />
+
+            <Frame
+                Margin="0,0,0,0"
+                Padding="0"
+                BackgroundColor="Transparent"
+                BorderColor="White"
+                CornerRadius="10"
+                HasShadow="False"
+                HeightRequest="20"
+                WidthRequest="300">
+                <ProgressBar
+                    x:Name="pbLoadProgress"
+                    Progress="{Binding ProgressValue}"
+                    ProgressColor="{StaticResource Primary}"
+                    ScaleX="2"
+                    ScaleY="4"
+                    WidthRequest="130" />
+            </Frame>
+            <Label
+                x:Name="lblMuestraMensajeCargandoAlUsuario"
+                Margin="5,20,5,10"
+                FontSize="18"
+                HorizontalTextAlignment="Center"
+                Text="{Binding ProgressMessage}"
+                TextColor="White" />
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

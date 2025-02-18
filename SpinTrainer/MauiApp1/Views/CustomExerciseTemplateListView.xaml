@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SpinningTrainer.Views.CustomExerciseTemplateListView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:charts="clr-namespace:Microcharts.Maui;assembly=Microcharts.Maui"
+    xmlns:converters="clr-namespace:SpinningTrainer.Resources.Converters"
+    xmlns:mi="http://www.aathifmahir.com/dotnet/2022/maui/icons"
+    Title="Ejercicios Personalizados"
+    Padding="15"
+    BackgroundColor="{StaticResource PrimaryDark}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!--  Contenedor de la tabla de ejercicios  -->
+        <StackLayout
+            Grid.Row="0"
+            Padding="0,50,0,20"
+            Orientation="Vertical"
+            Spacing="20">
+
+            <!--  Cabecera  -->
+            <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                <Label
+                    Margin="0,0,0,10"
+                    Style="{StaticResource CustomSectionTittles}"
+                    Text="Lista de Ejercicios Guardados" />
+
+            </StackLayout>
+
+            <!--  ScrollView para la tabla  -->
+            <ScrollView Orientation="Horizontal">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.1*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Row="0" Background="{StaticResource Primary}">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="30,30,0,0" />
+                        </Border.StrokeShape>
+                        <!--  Encabezado de la tabla  -->
+                        <Grid VerticalOptions="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200" />
+                                <ColumnDefinition Width="200" />
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="150" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                FontSize="20"
+                                HorizontalOptions="Center"
+                                Text="Nombre"
+                                TextColor="White"
+                                VerticalOptions="Center" />
+                            <Image
+                                Grid.Column="1"
+                                HorizontalOptions="Center"
+                                Source="{mi:Material Icon=DirectionsBike}"
+                                VerticalOptions="CenterAndExpand" />
+                            <Image
+                                Grid.Column="2"
+                                HorizontalOptions="Center"
+                                Source="{mi:Material Icon=Timelapse}"
+                                VerticalOptions="Center" />
+                            <Label
+                                Grid.Column="3"
+                                HorizontalOptions="Center"
+                                Text="RPM Med"
+                                TextColor="White"
+                                VerticalOptions="Center" />
+                            <Label
+                                Grid.Column="4"
+                                HorizontalOptions="Center"
+                                Text="RPM Fin"
+                                TextColor="White"
+                                VerticalOptions="Center" />
+                            <Image
+                                Grid.Column="5"
+                                HorizontalOptions="Center"
+                                Source="{mi:Material Icon=SignLanguage}"
+                                VerticalOptions="Center" />
+                            <Image
+                                Grid.Column="6"
+                                HorizontalOptions="Center"
+                                Source="{mi:Material Icon=ElectricBike}"
+                                VerticalOptions="Center" />
+                        </Grid>
+
+                    </Border>
+
+                    <!--  Cuerpo de la tabla  -->
+                    <StackLayout
+                        Grid.Row="1"
+                        Background="{StaticResource BackgroundFrame}"
+                        HeightRequest="400">
+                        <CollectionView
+                            x:Name="cvSelectedExercisesView"
+                            ItemsSource="{Binding SelectedExercisesList}"
+                            SelectedItem="{Binding SelectedSessionExercise}"
+                            SelectionChanged="CollectionView_SelectionChanged"
+                            SelectionMode="Single">
+                            <CollectionView.ItemsLayout>
+                                <LinearItemsLayout ItemSpacing="5" Orientation="Vertical" />
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0,10,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="200" />
+                                            <ColumnDefinition Width="100" />
+                                            <ColumnDefinition Width="100" />
+                                            <ColumnDefinition Width="100" />
+                                            <ColumnDefinition Width="100" />
+                                            <ColumnDefinition Width="150" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label
+                                            Grid.Column="0"
+                                            FontSize="18"
+                                            HorizontalOptions="Center"
+                                            Text="{Binding DescripMov}"
+                                            VerticalOptions="Center" />
+                                        <Label
+                                            Grid.Column="1"
+                                            FontSize="18"
+                                            HorizontalOptions="Center"
+                                            Text="{Binding DurationMin}"
+                                            VerticalOptions="Center" />
+                                        <Label
+                                            Grid.Column="2"
+                                            FontSize="18"
+                                            HorizontalOptions="Center"
+                                            Text="{Binding RPMMed}"
+                                            VerticalOptions="Center" />
+                                        <Label
+                                            Grid.Column="3"
+                                            FontSize="18"
+                                            HorizontalOptions="Center"
+                                            Text="{Binding RPMFin}"
+                                            VerticalOptions="Center" />
+                                        <Label
+                                            Grid.Column="4"
+                                            FontSize="18"
+                                            HorizontalOptions="Center"
+                                            Text="{Binding HandsPosition}"
+                                            VerticalOptions="Center" />
+                                        <Label
+                                            Grid.Column="5"
+                                            FontSize="18"
+                                            HorizontalOptions="Center"
+                                            Text="{Binding EnergyZone}"
+                                            VerticalOptions="Center" />
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </StackLayout>
+                </Grid>
+            </ScrollView>
+
+            <!--  Botón "Guardar Sesión"  -->
+            <Button
+                x:Name="btnAddConfigExercise"
+                BackgroundColor="{StaticResource Primary}"
+                BorderColor="Transparent"
+                Clicked="btnAddCustomExercise_Clicked"
+                CornerRadius="10"
+                FontSize="20"
+                HeightRequest="60"
+                HorizontalOptions="CenterAndExpand"
+                Text="Agregar Ejercicio"
+                TextColor="White"
+                WidthRequest="250" />
+        </StackLayout>
+    </Grid>
+</ContentPage>

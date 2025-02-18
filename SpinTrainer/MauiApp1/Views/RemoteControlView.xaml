@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SpinningTrainer.Views.RemoteControlView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:mi="http://www.aathifmahir.com/dotnet/2022/maui/icons"
+    xmlns:ndtp="clr-namespace:Maui.NullableDateTimePicker;assembly=Maui.NullableDateTimePicker"
+    Title="Control Remoto"
+    Background="{StaticResource PrimaryDark}"
+    Loaded="ContentPage_Loaded">
+    <Grid BackgroundColor="{StaticResource PrimaryDark}">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="0.5*" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <!--  Sección de datos de sesion  -->
+        <StackLayout
+            Grid.Row="0"
+            HorizontalOptions="Center"
+            Orientation="Vertical"
+            Spacing="15">
+
+            <StackLayout Orientation="Vertical">
+                <Label
+                    FontSize="25"
+                    HorizontalOptions="Center"
+                    MaxLines="1"
+                    Text="{Binding SessionName}"
+                    TextColor="White" />
+            </StackLayout>
+
+            <!--  Fila 1  -->
+            <StackLayout
+                HorizontalOptions="Center"
+                Orientation="Horizontal"
+                Spacing="10">
+                <!--  RPM  -->
+                <Frame
+                    BackgroundColor="White"
+                    BorderColor="{StaticResource Primary}"
+                    CornerRadius="10"
+                    HeightRequest="120"
+                    WidthRequest="120">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Label
+                            Grid.Row="0"
+                            FontAttributes="Bold"
+                            FontSize="14"
+                            HorizontalOptions="Center"
+                            Text="RPM"
+                            TextColor="{StaticResource Primary}" />
+                        <Label
+                            Grid.Row="1"
+                            FontAttributes="Bold"
+                            FontSize="50"
+                            HorizontalOptions="Center"
+                            Text="{Binding CurrentRPMValue, StringFormat='{0:0}'}"
+                            TextColor="{StaticResource Primary}"
+                            VerticalTextAlignment="Center" />
+                    </Grid>
+                </Frame>
+
+                <!--  Movimiento  -->
+                <Frame
+                    BackgroundColor="White"
+                    BorderColor="{StaticResource Primary}"
+                    CornerRadius="10"
+                    HeightRequest="120"
+                    WidthRequest="120">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="14"
+                            HorizontalOptions="Center"
+                            Text="Movimiento"
+                            TextColor="{StaticResource Primary}" />
+
+                        <Image
+                            Grid.Row="1"
+                            Aspect="Center"
+                            Source="{Binding CurrentExerciseImage}" />
+                    </Grid>
+                </Frame>
+            </StackLayout>
+
+            <!--  Fila 2  -->
+            <StackLayout
+                HorizontalOptions="Center"
+                Orientation="Horizontal"
+                Spacing="10">
+                <!--  Resistencia  -->
+                <Frame
+                    BackgroundColor="White"
+                    BorderColor="{StaticResource Primary}"
+                    CornerRadius="10"
+                    HeightRequest="120"
+                    WidthRequest="120">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Label
+                            Grid.Row="0"
+                            FontAttributes="Bold"
+                            FontSize="14"
+                            HorizontalOptions="Center"
+                            Text="Resistencia"
+                            TextColor="{StaticResource Primary}" />
+                        <Label
+                            Grid.Row="1"
+                            FontAttributes="Bold"
+                            FontSize="50"
+                            HorizontalOptions="Center"
+                            Text="{Binding CurrentResistanceValue, StringFormat='{0:0}'}"
+                            TextColor="{StaticResource Primary}"
+                            VerticalTextAlignment="Center" />
+                    </Grid>
+                </Frame>
+
+                <!--  Posicion  -->
+                <Frame
+                    BackgroundColor="#F8F8F8"
+                    BorderColor="{StaticResource Primary}"
+                    CornerRadius="10"
+                    HeightRequest="120"
+                    WidthRequest="120">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="14"
+                            HorizontalOptions="Center"
+                            Text="Posc. Manos"
+                            TextColor="{StaticResource Primary}" />
+                        <Image
+                            Grid.Row="1"
+                            Aspect="Fill"
+                            Source="{Binding CurrentHandsPositionImage}" />
+                    </Grid>
+                </Frame>
+            </StackLayout>
+        </StackLayout>
+
+        <!--  reproducción de la sesion  -->
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+
+            <GraphicsView
+                x:Name="graphicsView"
+                Grid.Row="0"
+                VerticalOptions="Center" />
+
+            <VerticalStackLayout Grid.Row="1">
+                <Label
+                    x:Name="lblCurrentEnergyZone"
+                    FontSize="18"
+                    HorizontalOptions="Center"
+                    Text="65%-Zona de energia"
+                    TextColor="White"
+                    VerticalOptions="CenterAndExpand" />
+                <Label
+                    FontSize="Medium"
+                    HorizontalOptions="Center"
+                    Text="{Binding ElapsedExerciseTime, StringFormat='{0:hh\\:mm\\:ss}'}"
+                    TextColor="White"
+                    VerticalOptions="Center" />
+            </VerticalStackLayout>
+        </Grid>
+
+
+        <!--  Botones de la sesion  -->
+        <Grid
+            Grid.Row="2"
+            Margin="0,0,0,60"
+            RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <!--  botón Anterior Ejercicio  -->
+            <Button
+                Grid.Row="0"
+                Grid.Column="0"
+                Margin="0,0,0,0"
+                AbsoluteLayout.LayoutBounds="0.5,1,1,1"
+                BackgroundColor="#0c192d"
+                Command="{Binding PreviousExerciseCommand}"
+                ContentLayout="Top"
+                CornerRadius="15"
+                FontAttributes="Bold"
+                FontSize="10"
+                HorizontalOptions="Center"
+                ImageSource="{mi:Material Icon=SkipPrevious,
+                                          IconSize=50}"
+                Text="Ejercicio Anterior"
+                TextColor="White"
+                VerticalOptions="Center" />
+
+            <!--  botón Reproducir Sesión  -->
+            <Button
+                Grid.Row="0"
+                Grid.Column="1"
+                Margin="0,0,0,0"
+                AbsoluteLayout.LayoutBounds="0.5,1,1,1"
+                BackgroundColor="#0c192d"
+                Command="{Binding PlayOrPauseCommand}"
+                ContentLayout="Top"
+                CornerRadius="15"
+                FontAttributes="Bold"
+                FontSize="10"
+                HorizontalOptions="Center"
+                ImageSource="{mi:Material Icon=PlayCircleOutline,
+                                          IconSize=50}"
+                Text="Reproducir/Pausar"
+                TextColor="White"
+                VerticalOptions="Center" />
+
+            <!--  botón Siguiente Ejercicio  -->
+            <Button
+                Grid.Row="0"
+                Grid.Column="2"
+                Margin="0,0,0,0"
+                AbsoluteLayout.LayoutBounds="0.5,1,1,1"
+                BackgroundColor="#0c192d"
+                Command="{Binding NextExerciseCommand}"
+                ContentLayout="Top"
+                CornerRadius="15"
+                FontAttributes="Bold"
+                FontSize="10"
+                HorizontalOptions="Center"
+                ImageSource="{mi:Material Icon=SkipNext,
+                                          IconSize=50}"
+                Text="Siguiente Ejercicio"
+                TextColor="White"
+                VerticalOptions="Center" />
+
+            <!--  botón Insertar Descanso  -->
+            <Button
+                Grid.Row="1"
+                Grid.Column="0"
+                Margin="0,0,0,0"
+                AbsoluteLayout.LayoutBounds="0.5,1,1,1"
+                BackgroundColor="#0c192d"
+                Command="{Binding InsertRestingExerciseCommand}"
+                ContentLayout="Top"
+                CornerRadius="15"
+                FontAttributes="Bold"
+                FontSize="10"
+                HorizontalOptions="Center"
+                ImageSource="{mi:Material Icon=MonitorHeart,
+                                          IconSize=50}"
+                Text="Insertar Descanso"
+                TextColor="White"
+                VerticalOptions="Center" />
+            <!--  Aquí va el botón "Insertar Descanso"  -->
+
+            <!--  botón Incrementar Intensidad  -->
+            <Button
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="0,0,0,0"
+                AbsoluteLayout.LayoutBounds="5,1,1,1"
+                BackgroundColor="#0c192d"
+                Command="{Binding IncreaseResistanceCommand}"
+                ContentLayout="Top"
+                CornerRadius="15"
+                FontAttributes="Bold"
+                FontSize="10"
+                HorizontalOptions="Center"
+                ImageSource="{mi:Material Icon=TrendingUp,
+                                          IconSize=50}"
+                Text="Subir Intensidad"
+                TextColor="White"
+                VerticalOptions="Center" />
+
+            <!--  botón Reducir Intensidad  -->
+            <Button
+                Grid.Row="1"
+                Grid.Column="2"
+                Margin="0,0,0,0"
+                AbsoluteLayout.LayoutBounds="0.5,1,1,1"
+                BackgroundColor="#0c192d"
+                Command="{Binding ReduceResistanceCommand}"
+                ContentLayout="Top"
+                CornerRadius="15"
+                FontAttributes="Bold"
+                FontSize="10"
+                HorizontalOptions="Center"
+                ImageSource="{mi:Material Icon=TrendingDown,
+                                          IconSize=50}"
+                Text="Bajar Intensidad"
+                TextColor="White"
+                VerticalOptions="Center" />
+
+        </Grid>
+    </Grid>
+</ContentPage>

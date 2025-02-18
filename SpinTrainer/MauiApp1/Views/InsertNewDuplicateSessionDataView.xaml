@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SpinningTrainer.Views.InsertNewDuplicateSessionDataView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:mi="http://www.aathifmahir.com/dotnet/2022/maui/icons"
+    Title="Insertar Datos de nueva sesión duplicada."
+    Padding="15"
+    Background="{StaticResource PrimaryDark}">
+
+    <VerticalStackLayout>
+        <!--  Sección: Nombre de la sesión  -->
+        <StackLayout Margin="0,0,0,20" Orientation="Vertical">
+            <Label
+                Margin="0,0,0,10"
+                FontSize="18"
+                Text="Nombre de la Sesion" />
+            <Frame HorizontalOptions="FillAndExpand">
+                <Grid ColumnSpacing="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Image
+                        Grid.Column="0"
+                        Source="{mi:Material Icon=Article}"
+                        VerticalOptions="Center" />
+                    <Entry
+                        x:Name="entSessionName"
+                        Grid.Column="1"
+                        BackgroundColor="Transparent"
+                        HeightRequest="50"
+                        HorizontalOptions="FillAndExpand"
+                        Placeholder="Nombre de la Sesion"
+                        Text="{Binding Descrip}" />
+                </Grid>
+            </Frame>
+        </StackLayout>
+
+        <!--  Sección: Fecha y hora de inicio  -->
+        <StackLayout Margin="0,0,0,20" Orientation="Vertical">
+            <Label
+                Margin="0,10,0,5"
+                FontSize="18"
+                Text="Fecha y hora de inicio"
+                TextColor="White" />
+            <StackLayout Orientation="Horizontal">
+                <!--  Input Fecha  -->
+                <Frame
+                    Margin="0,0,10,0"
+                    Background="{StaticResource BackgroundFrame}"
+                    HorizontalOptions="FillAndExpand">
+                    <HorizontalStackLayout>
+                        <Image Source="{mi:Material Icon=Event}" />
+                        <DatePicker
+                            x:Name="dpkSessionDate"
+                            Background="Transparent"
+                            Date="{Binding DateI}"
+                            WidthRequest="100" />
+                    </HorizontalStackLayout>
+                </Frame>
+
+                <!--  Input Hora  -->
+                <Frame
+                    Margin="0"
+                    Background="{StaticResource BackgroundFrame}"
+                    HorizontalOptions="FillAndExpand">
+                    <HorizontalStackLayout>
+                        <Image Source="{mi:Material Icon=Schedule}" />
+                        <TimePicker
+                            x:Name="dpkSessionTime"
+                            Background="Transparent"
+                            Time="{Binding TimeI}" />
+                    </HorizontalStackLayout>
+                </Frame>
+            </StackLayout>
+        </StackLayout>
+
+        <!--  Botón Siguiente  -->
+        <Button
+            x:Name="btnDuplicateSession"
+            Margin="0,30,0,0"
+            BackgroundColor="{StaticResource Primary}"
+            Command="{Binding DuplicateSessionCommand}"
+            CornerRadius="20"
+            HeightRequest="60"
+            HorizontalOptions="FillAndExpand"
+            Text="Duplicar Sesión"
+            TextColor="White" />
+    </VerticalStackLayout>
+</ContentPage>

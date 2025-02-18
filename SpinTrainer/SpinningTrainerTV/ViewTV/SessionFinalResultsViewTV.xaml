@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SpinningTrainerTV.ViewTV.SessionFinalResultsViewTV"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:mi="http://www.aathifmahir.com/dotnet/2022/maui/icons"
+    Title="Resumen de la Sesión"
+    Background="{StaticResource PrimaryDark}"
+    Loaded="ContentPage_Loaded">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsEnabled="False" IsVisible="False" />
+    </Shell.BackButtonBehavior>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <!--  Título  -->
+        <Label
+            Grid.Row="0"
+            Margin="0,20,0,10"
+            FontAttributes="Bold"
+            FontSize="Header"
+            HorizontalTextAlignment="Center"
+            Text="Resumen de la Sesión"
+            TextColor="White"
+            VerticalOptions="Start" />
+
+        <!--  Contenedor principal  -->
+        <Grid
+            Grid.Row="1"
+            Padding="20"
+            ColumnSpacing="20"
+            RowSpacing="20">
+            <!--  Definición de columnas: 3 columnas iguales  -->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*" />
+                <ColumnDefinition Width="0.5*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!--  Definición de filas: 2 filas iguales  -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--  Frame 1  -->
+            <Frame
+                Grid.Row="0"
+                Grid.Column="0"
+                BackgroundColor="#11264C"
+                CornerRadius="10">
+                <VerticalStackLayout
+                    HorizontalOptions="Center"
+                    Spacing="35"
+                    VerticalOptions="Center">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Large"
+                        HorizontalTextAlignment="Center"
+                        Text="Dur. Sesión en Minutos"
+                        TextColor="White" />
+                    <HorizontalStackLayout
+                        HorizontalOptions="Center"
+                        Spacing="30"
+                        VerticalOptions="Center">
+                        <Image
+                            HeightRequest="80"
+                            Source="{mi:Material Icon=Timelapse,
+                                                 IconSize=200,
+                                                 IconColor=Lightblue}"
+                            WidthRequest="80" />
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="Large"
+                            Text="{Binding TotalSessionDuration}"
+                            TextColor="White"
+                            VerticalTextAlignment="Center" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!--  Frame 2  -->
+            <Frame
+                Grid.Row="0"
+                Grid.Column="1"
+                BackgroundColor="#11264C"
+                CornerRadius="10">
+                <VerticalStackLayout
+                    HorizontalOptions="Center"
+                    Spacing="35"
+                    VerticalOptions="Center">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Large"
+                        HorizontalTextAlignment="Center"
+                        Text="Dist. Estimada Recorrida"
+                        TextColor="White" />
+                    <HorizontalStackLayout
+                        HorizontalOptions="Center"
+                        Spacing="30"
+                        VerticalOptions="Center">
+                        <Image
+                            HeightRequest="80"
+                            Source="{mi:Material Icon=DirectionsBike,
+                                                 IconSize=200,
+                                                 IconColor=Yellow}"
+                            WidthRequest="80" />
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="Large"
+                            Text="{Binding EstimatedDistanceTraveled}"
+                            TextColor="White"
+                            VerticalTextAlignment="Center" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!--  Frame 3  -->
+            <Frame
+                Grid.Row="1"
+                Grid.Column="0"
+                BackgroundColor="#11264C"
+                CornerRadius="10">
+                <VerticalStackLayout
+                    HorizontalOptions="Center"
+                    Spacing="35"
+                    VerticalOptions="Center">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Large"
+                        HorizontalTextAlignment="Center"
+                        Text="Velocidad Promedio"
+                        TextColor="White" />
+                    <HorizontalStackLayout
+                        HorizontalOptions="Center"
+                        Spacing="30"
+                        VerticalOptions="Center">
+                        <Image
+                            HeightRequest="80"
+                            Source="{mi:Material Icon=Speed,
+                                                 IconSize=200,
+                                                 IconColor=Green}"
+                            WidthRequest="80" />
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="Large"
+                            Text="{Binding AverageSpeed}"
+                            TextColor="White"
+                            VerticalTextAlignment="Center" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!--  Frame 4  -->
+            <Frame
+                Grid.Row="1"
+                Grid.Column="1"
+                BackgroundColor="#11264C"
+                CornerRadius="10">
+                <VerticalStackLayout
+                    HorizontalOptions="Center"
+                    Spacing="35"
+                    VerticalOptions="Center">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Large"
+                        HorizontalTextAlignment="Center"
+                        Text="Resistencia Promedio"
+                        TextColor="White" />
+                    <HorizontalStackLayout
+                        HorizontalOptions="Center"
+                        Spacing="30"
+                        VerticalOptions="Center">
+                        <Image
+                            HeightRequest="80"
+                            Source="{mi:Material Icon=Bolt,
+                                                 IconSize=200,
+                                                 IconColor=Orange}"
+                            WidthRequest="80" />
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="Large"
+                            Text="{Binding AverageResistancePercentage}"
+                            TextColor="White"
+                            VerticalTextAlignment="Center" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!--  Tabla de Zonas de Energía  -->
+            <Grid
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                Grid.Column="2"
+                Padding="10"
+                BackgroundColor="#11264C">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Label
+                    Grid.Row="0"
+                    FontSize="Medium"
+                    HorizontalOptions="Center"
+                    Text="Zonas de Energía"
+                    VerticalOptions="Center" />
+                <Frame
+                    Grid.Row="1"
+                    Margin="0,5,0,5"
+                    Padding="10"
+                    BackgroundColor="#11264C"
+                    BorderColor="Gray">
+                    <Grid ColumnDefinitions="2*,1*">
+                        <Label
+                            FontSize="Medium"
+                            Text="Zona"
+                            TextColor="White" />
+                        <Label
+                            FontSize="Medium"
+                            HorizontalOptions="End"
+                            Text="Duración"
+                            TextColor="White" />
+                    </Grid>
+                </Frame>
+                <Frame
+                    Grid.Row="2"
+                    Margin="0,5,0,5"
+                    Padding="10"
+                    BackgroundColor="#11264C"
+                    BorderColor="Gray">
+                    <Grid ColumnDefinitions="2*,1*">
+                        <Label
+                            FontSize="Medium"
+                            Text="{Binding Top1EnergyZoneName}"
+                            TextColor="White" />
+                        <Label
+                            FontSize="Medium"
+                            HorizontalOptions="End"
+                            Text="{Binding Top1EnergyZoneDuration}"
+                            TextColor="White" />
+                    </Grid>
+                </Frame>
+                <Frame
+                    Grid.Row="3"
+                    Margin="0,5,0,5"
+                    Padding="10"
+                    BackgroundColor="#11264C"
+                    BorderColor="Gray">
+                    <Grid ColumnDefinitions="2*,1*">
+                        <Label
+                            FontSize="Medium"
+                            Text="{Binding Top2EnergyZoneName}"
+                            TextColor="White" />
+                        <Label
+                            FontSize="Medium"
+                            HorizontalOptions="End"
+                            Text="{Binding Top2EnergyZoneDuration}"
+                            TextColor="White" />
+                    </Grid>
+                </Frame>
+                <Frame
+                    Grid.Row="4"
+                    Margin="0,5,0,5"
+                    Padding="10"
+                    BackgroundColor="#11264C"
+                    BorderColor="Gray">
+                    <Grid ColumnDefinitions="2*,1*">
+                        <Label
+                            FontSize="Medium"
+                            Text="{Binding Top3EnergyZoneName}"
+                            TextColor="White" />
+                        <Label
+                            FontSize="Medium"
+                            HorizontalOptions="End"
+                            Text="{Binding Top3EnergyZoneDuration}"
+                            TextColor="White" />
+                    </Grid>
+                </Frame>
+                <Frame
+                    Grid.Row="5"
+                    Margin="0,5,0,5"
+                    Padding="10"
+                    BackgroundColor="#11264C"
+                    BorderColor="Gray">
+                    <Grid ColumnDefinitions="2*,1*">
+                        <Label
+                            FontSize="Medium"
+                            Text="{Binding Top4EnergyZoneName}"
+                            TextColor="White" />
+                        <Label
+                            FontSize="Medium"
+                            HorizontalOptions="End"
+                            Text="{Binding Top4EnergyZoneDuration}"
+                            TextColor="White" />
+                    </Grid>
+                </Frame>
+                <Frame
+                    Grid.Row="6"
+                    Margin="0,5,0,5"
+                    Padding="10"
+                    BackgroundColor="#11264C"
+                    BorderColor="Gray">
+                    <Grid ColumnDefinitions="2*,1*">
+                        <Label
+                            FontSize="Medium"
+                            Text="{Binding Top5EnergyZoneName}"
+                            TextColor="White" />
+                        <Label
+                            FontSize="Medium"
+                            HorizontalOptions="End"
+                            Text="{Binding Top5EnergyZoneDuration}"
+                            TextColor="White" />
+                    </Grid>
+                </Frame>
+            </Grid>
+        </Grid>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SpinningTrainer.Views.SessionExerciseSelectionView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:SpinningTrainer.Resources.Converters"
+    Title="Seleccionar Ejercicio"
+    Padding="15"
+    Background="{StaticResource PrimaryDark}">
+    <ContentPage.Resources>
+        <converters:RouteToImageConverter x:Key="RouteToImageConverter" />
+    </ContentPage.Resources>
+    <StackLayout Padding="10">
+        <!--  Etiqueta descriptiva  -->
+        <Label
+            Margin="0,0,0,20"
+            FontSize="Medium"
+            HorizontalOptions="Center"
+            Text="Presiona sobre uno de los símbolos para seleccionar un ejercicio" />
+
+        <!--  CollectionView para mostrar los ejercicios  -->
+        <CollectionView
+            ItemsLayout="VerticalGrid, 3"
+            ItemsSource="{Binding ExercisesList}"
+            SelectedItem="{Binding SelectedExercise}"
+            SelectionMode="Single">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+
+                    <Border Margin="10" Padding="5">
+                        <StackLayout
+                            Padding="6"
+                            Orientation="Vertical"
+                            Spacing="6">
+                            <Image HeightRequest="60" Source="{Binding ExerciseImageRoute, Converter={StaticResource RouteToImageConverter}}" />
+                            <Label
+                                FontSize="Small"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding Descrip}"
+                                VerticalTextAlignment="Center" />
+                        </StackLayout>
+                    </Border>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <StackLayout>
+            <Button
+                Margin="0,20,0,0"
+                Clicked="Button_Clicked"
+                Text="Siguiente" />
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

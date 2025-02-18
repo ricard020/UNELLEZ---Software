@@ -1,0 +1,33 @@
+<ContentPage
+    x:Class="SpinningTrainer.Views.PreviewComparativeReportView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Reporte Comparativo"
+    BackgroundColor="White">
+
+    <VerticalStackLayout>
+
+        <!--  NO ESTAN LOS ENTRYS  -->
+
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Button
+                Grid.Row="0"
+                Background="{StaticResource Primary}"
+                HorizontalOptions="Center"
+                Text="Sí"
+                VerticalOptions="Center" />
+
+            <Button
+                Grid.Row="1"
+                Background="{StaticResource Primary}"
+                HorizontalOptions="Center"
+                Text="No"
+                VerticalOptions="Center" />
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

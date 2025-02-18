@@ -1,0 +1,197 @@
+﻿<ContentPage
+    x:Class="SpinningTrainer.Views.LoginView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:SpinningTrainer.Resources.Converters"
+    xmlns:mi="http://www.aathifmahir.com/dotnet/2022/maui/icons"
+    xmlns:viewModel="clr-namespace:SpinningTrainer.ViewModels"
+    Background="{StaticResource PrimaryDark}">
+
+    <ContentPage.Resources>
+        <converters:MaterialIconConverter x:Key="MaterialIconConverter" />
+    </ContentPage.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.9*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
+        <Image
+            Grid.Row="0"
+            Aspect="AspectFill"
+            SemanticProperties.Description="SpinTrainer"
+            Source="logosplash.png" />
+
+        <StackLayout Grid.Row="1" Padding="30,0,30,0">
+
+            <Label
+                Margin="0,-40,0,0"
+                FontSize="20"
+                HorizontalOptions="Start"
+                SemanticProperties.Description="Usuario"
+                SemanticProperties.HeadingLevel="Level2"
+                Style="{StaticResource SubHeadline}"
+                Text="Usuario"
+                TextColor="White" />
+
+            <!--  Input de Nombre de Usuario  -->
+            <Frame Margin="0,5,0,0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Image Grid.Column="0" Source="{mi:Material Icon=Person}" />
+                    <Entry
+                        x:Name="codUsuaIngresadoEntry"
+                        Grid.Column="1"
+                        IsEnabled="{Binding NotCheckingLoggin}"
+                        MaxLength="30"
+                        Placeholder="Ingresa tu usuario"
+                        Text="{Binding Username, Mode=TwoWay}"
+                        TextColor="White" />
+                </Grid>
+            </Frame>
+
+            <Label
+                Margin="0,20,0,0"
+                FontSize="20"
+                HorizontalOptions="Start"
+                SemanticProperties.Description="Usuario"
+                SemanticProperties.HeadingLevel="Level2"
+                Text="Contraseña"
+                TextColor="White" />
+
+            <!--  Input de Contraseña  -->
+            <Frame
+                Margin="0,5,0,0"
+                Padding="10,0,10,0"
+                BorderColor="Transparent"
+                CornerRadius="8">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Image Grid.Column="0" Source="{mi:Material Icon=Password}" />
+                    <Entry
+                        x:Name="contraIngresadaEntry"
+                        Grid.Column="1"
+                        IsEnabled="{Binding NotCheckingLoggin}"
+                        IsPassword="True"
+                        MaxLength="30"
+                        Placeholder="Ingresa tu contraseña"
+                        Text="{Binding Password, Mode=TwoWay}"
+                        TextColor="White" />
+                    <ImageButton
+                        x:Name="imgbtnShowOrHidePassword"
+                        Grid.Column="2"
+                        Clicked="imgbtnShowOrHidePassword_Clicked"
+                        HeightRequest="25"
+                        Source="{mi:Material Icon=VisibilityOff}"
+                        WidthRequest="25" />
+                </Grid>
+            </Frame>
+
+            <Label
+                Margin="0,15,0,15"
+                FontAttributes="Bold"
+                FontSize="12"
+                HorizontalTextAlignment="Center"
+                Text="{Binding ErrorMessage}"
+                TextColor="White" />
+
+            <Button
+                x:Name="btnIniciarSesion"
+                BackgroundColor="{StaticResource Primary}"
+                BorderColor="{StaticResource Primary}"
+                Command="{Binding LoginCommand}"
+                IsVisible="{Binding NotCheckingLoggin}"
+                Text="Iniciar sesión" />
+
+            <!--  Contenedor de estados: offline, cargando, etc  -->
+            <StackLayout>
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="12"
+                    HorizontalTextAlignment="Center"
+                    IsVisible="{Binding CheckingLoggin}"
+                    Text="Verificando datos de inicio..."
+                    TextColor="White" />
+
+                <ActivityIndicator
+                    x:Name="aiConexionVerificandose"
+                    IsRunning="{Binding CheckingLoggin}"
+                    IsVisible="True"
+                    Color="White" />
+
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="20"
+                    HorizontalTextAlignment="Center"
+                    IsVisible="{Binding IsOffline}"
+                    Text="OFFLINE"
+                    TextColor="Red" />
+            </StackLayout>
+
+            <Grid>
+                <!--  Grid para alinear los elementos  -->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <!--  Contenedor de Recuperar Datos y "¿Olvidó sus Datos?"  -->
+                <StackLayout
+                    Grid.Column="0"
+                    HorizontalOptions="Start"
+                    Orientation="Horizontal"
+                    Spacing="6"
+                    VerticalOptions="Start">
+                    <Label
+                        Margin="0,25,0,0"
+                        FontSize="15"
+                        HorizontalTextAlignment="Center"
+                        SemanticProperties.Description="Usuario"
+                        SemanticProperties.HeadingLevel="Level2"
+                        Style="{StaticResource SubHeadline}"
+                        Text="¿Olvidó sus Datos?"
+                        TextColor="White" />
+
+                    <!--  Texto para "Recuperar"  -->
+                    <Label
+                        x:Name="lblRecuerarDatos"
+                        Margin="0,25,0,0"
+                        FontAttributes="Bold"
+                        FontSize="15"
+                        SemanticProperties.Description="Usuario"
+                        SemanticProperties.HeadingLevel="Level2"
+                        Style="{StaticResource SubHeadline}"
+                        Text="Recuperar"
+                        TextColor="White"
+                        TextDecorations="Underline">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer x:Name="tgrRecuperarDatos" Tapped="tgrRecuperarDatos_Tapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+
+                <!--  Icono de Wi-Fi al extremo derecho  -->
+                <Frame Grid.Column="1">
+                    <ImageButton
+                        Aspect="AspectFit"
+                        HeightRequest="25"
+                        HorizontalOptions="End"
+                        Pressed="ImageButton_Pressed"
+                        Source="{mi:Material Icon=NetworkWifi3Bar}"
+                        WidthRequest="25" />
+                </Frame>
+            </Grid>
+
+        </StackLayout>
+    </Grid>
+</ContentPage>

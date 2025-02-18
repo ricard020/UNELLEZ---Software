@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SpinningTrainer.Views.CustomExerciseTemplateView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:charts="clr-namespace:Microcharts.Maui;assembly=Microcharts.Maui"
+    xmlns:converters="clr-namespace:SpinningTrainer.Resources.Converters"
+    xmlns:mi="http://www.aathifmahir.com/dotnet/2022/maui/icons"
+    Title="Personalizar Ejercicio"
+    Padding="15"
+    Background="{StaticResource PrimaryDark}">
+    <ContentPage.Resources>
+        <converters:NotConverter x:Key="NotConverter" />
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <StackLayout Margin="10" HorizontalOptions="FillAndExpand">
+            <!--  Título de la sección  -->
+            <Label
+                Margin="0,0,0,20"
+                FontAttributes="Bold"
+                Style="{StaticResource CustomSectionTittles}"
+                Text="Datos del Ejercicio a Guardar" />
+
+            <!--  Sección de selección de ejercicio  -->
+            <StackLayout Margin="0,0,0,20" Orientation="Vertical">
+
+                <Frame HorizontalOptions="FillAndExpand">
+                    <Grid ColumnSpacing="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image
+                            Grid.Column="0"
+                            Source="{mi:Material Icon=Notes}"
+                            VerticalOptions="Center" />
+                        <Entry
+                            Grid.Column="1"
+                            CursorPosition="0"
+                            HeightRequest="50"
+                            HorizontalOptions="FillAndExpand"
+                            Placeholder="Nombre de la Plantilla"
+                            Style="{StaticResource CustomEntry}"
+                            Text="" />
+                    </Grid>
+                </Frame>
+
+                <Label
+                    Margin="0,10,0,10"
+                    FontSize="18"
+                    Text="Ejercicio" />
+
+                <Frame HorizontalOptions="FillAndExpand">
+                    <Grid ColumnSpacing="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image
+                            Grid.Column="0"
+                            Source="{mi:Material Icon=DirectionsBike}"
+                            VerticalOptions="Center" />
+                        <Picker
+                            x:Name="exercisePicker"
+                            Title="Selecciona un ejercicio"
+                            Grid.Column="1"
+                            HeightRequest="50"
+                            HorizontalOptions="FillAndExpand"
+                            ItemDisplayBinding="{Binding Descrip}"
+                            ItemsSource="{Binding ExercisesList}"
+                            SelectedItem="{Binding SelectedExercise, Mode=TwoWay}"
+                            Style="{StaticResource CustomPicker}" />
+                    </Grid>
+                </Frame>
+            </StackLayout>
+
+            <Grid ColumnSpacing="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <VerticalStackLayout Grid.Column="1">
+                    <!--  Sección de duración en minutos  -->
+                    <StackLayout Margin="0,0,0,20" Orientation="Vertical">
+                        <Label
+                            Margin="0,0,0,10"
+                            FontSize="18"
+                            Text="Duración" />
+                        <Frame HorizontalOptions="FillAndExpand">
+                            <Grid ColumnSpacing="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Image
+                                    Grid.Column="0"
+                                    Source="{mi:Material Icon=Timelapse}"
+                                    VerticalOptions="Center" />
+                                <Entry
+                                    x:Name="entExerciseDuration"
+                                    Grid.Column="1"
+                                    CursorPosition="0"
+                                    HeightRequest="50"
+                                    HorizontalOptions="FillAndExpand"
+                                    HorizontalTextAlignment="End"
+                                    IsEnabled="{Binding HasSelectedExercise}"
+                                    Keyboard="Numeric"
+                                    Style="{StaticResource CustomEntry}"
+                                    Text="{Binding DurationMin}" />
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
+
+                    <!--  Sección de valores RPM  -->
+                    <StackLayout Margin="0,0,0,20" Orientation="Vertical">
+                        <Label
+                            Margin="0,0,0,10"
+                            FontSize="18"
+                            Text="Valores RPM" />
+
+                        <Grid ColumnSpacing="10" RowSpacing="12">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <Frame Grid.Row="0" HorizontalOptions="FillAndExpand">
+                                <Grid ColumnSpacing="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.37*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label
+                                        Grid.Column="0"
+                                        Text="Med."
+                                        VerticalOptions="Center" />
+
+                                    <Entry
+                                        x:Name="entRMPMed"
+                                        Grid.Column="1"
+                                        CursorPosition="0"
+                                        HorizontalOptions="FillAndExpand"
+                                        HorizontalTextAlignment="End"
+                                        IsEnabled="{Binding HasSelectedExercise}"
+                                        Keyboard="Numeric"
+                                        Placeholder="RPM Med."
+                                        Style="{StaticResource CustomEntry}"
+                                        Text="{Binding RPMMed}" />
+
+                                </Grid>
+                            </Frame>
+
+                            <Frame Grid.Row="1" HorizontalOptions="FillAndExpand">
+                                <Grid ColumnSpacing="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.37*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label
+                                        Grid.Column="0"
+                                        Text="Máx."
+                                        VerticalOptions="Center" />
+                                    <Entry
+                                        x:Name="entRPMEnd"
+                                        Grid.Column="1"
+                                        CursorPosition="0"
+                                        HorizontalOptions="FillAndExpand"
+                                        HorizontalTextAlignment="End"
+                                        IsEnabled="{Binding HasSelectedExercise}"
+                                        Keyboard="Numeric"
+                                        Placeholder="RPM Máx."
+                                        Style="{StaticResource CustomEntry}"
+                                        Text="{Binding RPMFin}" />
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </StackLayout>
+                </VerticalStackLayout>
+
+                <!--  Sección de posición de manos  -->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <StackLayout
+                        Grid.Row="0"
+                        Margin="0,0,0,20"
+                        Orientation="Vertical">
+                        <Label
+                            Margin="0,0,0,10"
+                            FontSize="18"
+                            Text="Posición de Manos" />
+                        <Frame HorizontalOptions="FillAndExpand">
+                            <Grid ColumnSpacing="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Image
+                                    Grid.Column="0"
+                                    Source="{mi:Material Icon=SignLanguage}"
+                                    VerticalOptions="Center" />
+                                <Picker
+                                    Title="Seleccionar"
+                                    Grid.Column="1"
+                                    HeightRequest="50"
+                                    HorizontalOptions="FillAndExpand"
+                                    IsEnabled="{Binding HasSelectedExercise}"
+                                    ItemsSource="{Binding HandsPositions}"
+                                    SelectedItem="{Binding SelectedHandsPosition}"
+                                    Style="{StaticResource CustomPicker}" />
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
+                    <Grid Grid.Row="1" BackgroundColor="Transparent">
+                        <Frame Background="White">
+                            <!--  Imágen de Posición de Manos seleccionada por el usuario  -->
+                            <Grid>
+                                <Label
+                                    Margin="0,0,0,10"
+                                    FontSize="18"
+                                    IsVisible="{Binding NotHandsPositionAreSelected}"
+                                    Text="Vista prev.                                               (Pos. Manos)"
+                                    TextColor="{StaticResource PrimaryDark}"
+                                    VerticalTextAlignment="Center" />
+                                <Image
+                                    Aspect="AspectFit"
+                                    IsVisible="{Binding HandsPositionAreSelected}"
+                                    Source="{Binding SelectedHandsPositionImage, Mode=TwoWay}" />
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                </Grid>
+            </Grid>
+
+            <Grid ColumnSpacing="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <StackLayout
+                    HorizontalOptions="EndAndExpand"
+                    Orientation="Vertical"
+                    VerticalOptions="CenterAndExpand">
+                    <Label
+                        Margin="0,10,0,10"
+                        FontSize="18"
+                        Text="Resistencia (%)" />
+                </StackLayout>
+
+                <Frame Grid.Column="1" HorizontalOptions="FillAndExpand">
+                    <Grid ColumnSpacing="10">
+                        <Entry
+                            x:Name="entResistancePersentageEntry"
+                            Grid.Column="1"
+                            CursorPosition="0"
+                            HorizontalOptions="FillAndExpand"
+                            HorizontalTextAlignment="End"
+                            IsEnabled="{Binding HasSelectedExercise}"
+                            Keyboard="Numeric"
+                            Placeholder="Resistencia (%)"
+                            Style="{StaticResource CustomEntry}"
+                            Text="{Binding ResistancePercentage}" />
+                    </Grid>
+                </Frame>
+            </Grid>
+
+            <StackLayout Margin="0,10,0,0" Orientation="Vertical">
+
+                <Label
+                    Margin="0,0,0,10"
+                    FontSize="18"
+                    Text="Zonas de Energia (Desde - Hasta)" />
+                <Frame HorizontalOptions="FillAndExpand">
+                    <Grid ColumnSpacing="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image
+                            Grid.Column="0"
+                            Source="{mi:Material Icon=ElectricBike}"
+                            VerticalOptions="Center" />
+                        <Entry
+                            Grid.Column="1"
+                            HeightRequest="50"
+                            HorizontalOptions="FillAndExpand"
+                            IsEnabled="False"
+                            Style="{StaticResource CustomPicker}"
+                            Text="{Binding EnergyZoneFrom}" />
+                    </Grid>
+                </Frame>
+
+                <Frame Margin="0,10,0,0" HorizontalOptions="FillAndExpand">
+                    <Grid ColumnSpacing="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image
+                            Grid.Column="0"
+                            Source="{mi:Material Icon=ElectricBike}"
+                            VerticalOptions="Center" />
+                        <Entry
+                            Grid.Column="1"
+                            HeightRequest="50"
+                            HorizontalOptions="FillAndExpand"
+                            IsEnabled="False"
+                            Style="{StaticResource CustomPicker}"
+                            Text="{Binding EnergyZoneTo}" />
+                    </Grid>
+                </Frame>
+            </StackLayout>
+            <!--  Botón Agregar  -->
+            <Grid Margin="0,20,0,0" ColumnSpacing="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Button
+                    Grid.Column="0"
+                    BackgroundColor="{StaticResource Primary}"
+                    Command="{Binding AddSessionExerciseCommand}"
+                    CornerRadius="10"
+                    FontSize="20"
+                    HeightRequest="60"
+                    HorizontalOptions="FillAndExpand"
+                    IsVisible="{Binding EditionExerciseEnable, Converter={StaticResource Key=NotConverter}}"
+                    Text="Agregar"
+                    TextColor="White"
+                    WidthRequest="150" />
+
+                <Button
+                    Grid.Column="1"
+                    BackgroundColor="DarkRed"
+                    BorderColor="DarkRed"
+                    Command="{Binding RemoveSessionExerciseCommand}"
+                    CornerRadius="10"
+                    FontSize="20"
+                    HeightRequest="60"
+                    HorizontalOptions="FillAndExpand"
+                    Text="Cancelar"
+                    TextColor="White"
+                    WidthRequest="150" />
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

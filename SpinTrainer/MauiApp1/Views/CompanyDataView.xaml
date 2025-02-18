@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SpinningTrainer.Views.CompanyDataView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converter="clr-namespace:SpinningTrainer.Resources.Converters"
+    xmlns:viewModel="clr-namespace:SpinningTrainer.ViewModels"
+    Title="Datos Empresa"
+    Background="{StaticResource PrimaryDark}">
+
+    <ContentPage.Resources>
+        <converter:NotConverter x:Key="NotConverter" />
+    </ContentPage.Resources>
+
+    <Grid Padding="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="0.1*" />
+        </Grid.RowDefinitions>
+
+        <VerticalStackLayout Grid.Row="0">
+            <Label
+                FontSize="20"
+                HorizontalOptions="StartAndExpand"
+                SemanticProperties.Description="Usuario"
+                SemanticProperties.HeadingLevel="Level2"
+                Style="{StaticResource SubHeadline}"
+                Text="RIF:"
+                TextColor="White" />
+
+            <Frame
+                Margin="0,10,0,0"
+                BackgroundColor="{StaticResource BackgroundFrame}"
+                VerticalOptions="Center">
+                <Entry
+                    IsEnabled="{Binding EditEnable}"
+                    MaxLength="30"
+                    Placeholder="Ingrese el RIF de la empresa"
+                    Style="{StaticResource CustomEntry}"
+                    Text="{Binding Rif, Mode=TwoWay}" />
+            </Frame>
+
+            <Label
+                Margin="0,25,0,0"
+                FontSize="20"
+                HorizontalOptions="StartAndExpand"
+                SemanticProperties.Description="Usuario"
+                SemanticProperties.HeadingLevel="Level2"
+                Style="{StaticResource SubHeadline}"
+                Text="Descripción Fiscal:"
+                TextColor="White" />
+
+            <Frame
+                Margin="0,10,0,0"
+                HeightRequest="60"
+                VerticalOptions="Center">
+                <Editor
+                    Margin="0,10,0,0"
+                    IsEnabled="{Binding EditEnable}"
+                    MaxLength="80"
+                    Placeholder="Ingrese la descripción fiscal"
+                    Style="{StaticResource CustomEntry}"
+                    Text="{Binding Descrip, Mode=TwoWay}" />
+            </Frame>
+
+            <Label
+                Margin="0,25,0,0"
+                FontSize="20"
+                HorizontalOptions="StartAndExpand"
+                SemanticProperties.Description="Usuario"
+                SemanticProperties.HeadingLevel="Level2"
+                Style="{StaticResource SubHeadline}"
+                Text="Dirección Fiscal:"
+                TextColor="White" />
+
+            <Frame
+                Margin="0,10,0,0"
+                HeightRequest="90"
+                VerticalOptions="Center">
+                <Editor
+                    IsEnabled="{Binding EditEnable}"
+                    MaxLength="120"
+                    Placeholder="Ingrese la dirección fiscal"
+                    Style="{StaticResource CustomEntry}"
+                    Text="{Binding Direc, Mode=TwoWay}" />
+            </Frame>
+
+            <Button
+                Margin="0,30,0,0"
+                Background="{StaticResource Primary}"
+                Command="{Binding SearchImageCommand}"
+                IsEnabled="{Binding EditEnable}"
+                Text="Buscar logo" />
+            <Image
+                HeightRequest="220"
+                Source="{Binding Logo}"
+                WidthRequest="220" />
+        </VerticalStackLayout>
+
+        <Grid Grid.Row="1">
+            <Button
+                BackgroundColor="{StaticResource Primary}"
+                Command="{Binding EnableEditCommand}"
+                IsVisible="{Binding EditEnable, Converter={StaticResource Key=NotConverter}}"
+                Text="Editar"
+                TextColor="White" />
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Button
+                    Grid.Column="0"
+                    Margin="0,0,5,0"
+                    BackgroundColor="DarkGreen"
+                    BorderColor="Green"
+                    Command="{Binding SaveDataCommand}"
+                    IsVisible="{Binding EditEnable}"
+                    Text="Aceptar"
+                    TextColor="White" />
+
+                <Button
+                    Grid.Column="1"
+                    Margin="5,0,0,0"
+                    BackgroundColor="DarkRed"
+                    BorderColor="Red"
+                    Command="{Binding CancelEditCommand}"
+                    IsVisible="{Binding EditEnable}"
+                    Text="Cancelar"
+                    TextColor="White" />
+            </Grid>
+        </Grid>
+    </Grid>
+</ContentPage>

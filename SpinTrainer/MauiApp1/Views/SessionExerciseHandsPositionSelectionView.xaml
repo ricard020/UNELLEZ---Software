@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SpinTrainer.Views.SessionExerciseHandsPositionSelectionView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:SpinningTrainer.Resources.Converters"
+    Title="Seleccionar Pos. Manos de Ejercicio"
+    Padding="15"
+    Background="{StaticResource PrimaryDark}">
+    <ContentPage.Resources>
+        <converters:RouteToImageConverter x:Key="RouteToImageConverter" />
+    </ContentPage.Resources>
+
+    <StackLayout Padding="10">
+        <!--  Etiqueta descriptiva  -->
+        <Label
+            Margin="0,0,0,20"
+            FontSize="Medium"
+            HorizontalOptions="Center"
+            Text="Presiona sobre una de las imágenes para seleccionar una posición de manos" />
+
+        <!--  CollectionView para mostrar las posiciones de manos  -->
+        <CollectionView
+            ItemsLayout="VerticalGrid, 2"
+            ItemsSource="{Binding HandsPositions}"
+            SelectedItem="{Binding SelectedHandsPosition}"
+            SelectionMode="Single">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+
+                    <Border Margin="10">
+                        <StackLayout
+                            Padding="10"
+                            Orientation="Vertical"
+                            Spacing="10">
+                            <Image HeightRequest="60" Source="{Binding RouteImage, Converter={StaticResource RouteToImageConverter}}" />
+                            <VerticalStackLayout HorizontalOptions="Center">
+                                <Label FontSize="Small" Text="{Binding Number}" />
+                            </VerticalStackLayout>
+                        </StackLayout>
+                    </Border>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button
+            Margin="0,20,0,0"
+            Clicked="Button_Clicked"
+            Text="Siguiente" />
+    </StackLayout>
+</ContentPage>

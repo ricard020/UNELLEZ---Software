@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SpinTrainer.Views.SessionExerciseResumeView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:SpinningTrainer.Resources.Converters"
+    xmlns:mi="http://www.aathifmahir.com/dotnet/2022/maui/icons"
+    Title="Resumen de Ejercicio"
+    Padding="15"
+    Background="{StaticResource PrimaryDark}">
+    <ContentPage.Resources>
+        <converters:RouteToImageConverter x:Key="RouteToImageConverter" />
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <StackLayout Margin="10" HorizontalOptions="FillAndExpand">
+
+            <!--  Sección de selección de ejercicio  -->
+            <StackLayout Margin="0,0,0,20" Orientation="Vertical">
+                <Label
+                    Margin="0,0,0,10"
+                    FontSize="18"
+                    Text="Ejercicio" />
+                <Frame HorizontalOptions="FillAndExpand">
+                    <Grid ColumnSpacing="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image
+                            Grid.Column="0"
+                            Source="{mi:Material Icon=DirectionsBike}"
+                            VerticalOptions="Center" />
+                        <Entry
+                            Grid.Column="1"
+                            HeightRequest="50"
+                            HorizontalOptions="FillAndExpand"
+                            IsEnabled="False"
+                            Style="{StaticResource CustomPicker}"
+                            Text="{Binding SelectedExercise.Descrip}"
+                            TextColor="white" />
+
+                    </Grid>
+                </Frame>
+            </StackLayout>
+
+            <Grid ColumnSpacing="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <VerticalStackLayout Grid.Column="1">
+                    <!--  Sección de duración en minutos  -->
+                    <StackLayout Margin="0,0,0,20" Orientation="Vertical">
+                        <Label
+                            Margin="0,0,0,10"
+                            FontSize="18"
+                            Text="Duración (Minutos)" />
+                        <Frame HorizontalOptions="FillAndExpand">
+                            <Grid ColumnSpacing="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Image
+                                    Grid.Column="0"
+                                    Source="{mi:Material Icon=Timelapse}"
+                                    VerticalOptions="Center" />
+                                <Entry
+                                    Grid.Column="1"
+                                    CursorPosition="0"
+                                    HeightRequest="50"
+                                    HorizontalOptions="FillAndExpand"
+                                    HorizontalTextAlignment="End"
+                                    IsEnabled="False"
+                                    Keyboard="Numeric"
+                                    Style="{StaticResource CustomEntry}"
+                                    Text="{Binding DurationMin}"
+                                    TextColor="White" />
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
+
+                    <!--  Sección de valores RPM  -->
+                    <StackLayout Margin="0,0,0,20" Orientation="Vertical">
+                        <Label
+                            Margin="0,0,0,10"
+                            FontSize="18"
+                            Text="Valores RPM" />
+
+                        <Grid ColumnSpacing="10" RowSpacing="12">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <Frame Grid.Row="0" HorizontalOptions="FillAndExpand">
+                                <Grid ColumnSpacing="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.37*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label
+                                        Grid.Column="0"
+                                        Text="Med."
+                                        TextColor="white"
+                                        VerticalOptions="Center" />
+
+                                    <Entry
+                                        Grid.Column="1"
+                                        CursorPosition="0"
+                                        HorizontalOptions="FillAndExpand"
+                                        HorizontalTextAlignment="End"
+                                        IsEnabled="False"
+                                        Keyboard="Numeric"
+                                        Placeholder="RPM Med."
+                                        Style="{StaticResource CustomEntry}"
+                                        Text="{Binding RPMMed}"
+                                        TextColor="white" />
+
+                                </Grid>
+                            </Frame>
+
+                            <Frame Grid.Row="1" HorizontalOptions="FillAndExpand">
+                                <Grid ColumnSpacing="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.37*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label
+                                        Grid.Column="0"
+                                        Text="Máx."
+                                        VerticalOptions="Center" />
+                                    <Entry
+                                        Grid.Column="1"
+                                        CursorPosition="0"
+                                        HorizontalOptions="FillAndExpand"
+                                        HorizontalTextAlignment="End"
+                                        IsEnabled="False"
+                                        Keyboard="Numeric"
+                                        Placeholder="RPM Máx."
+                                        Style="{StaticResource CustomEntry}"
+                                        Text="{Binding RPMFin}"
+                                        TextColor="white" />
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </StackLayout>
+                </VerticalStackLayout>
+
+                <!--  Sección de posición de manos  -->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <StackLayout
+                        Grid.Row="0"
+                        Margin="0,0,0,20"
+                        Orientation="Vertical">
+                        <Label
+                            Margin="0,0,0,10"
+                            FontSize="18"
+                            Text="Pos. de Manos" />
+                        <Frame HorizontalOptions="FillAndExpand">
+                            <Grid ColumnSpacing="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Image
+                                    Grid.Column="0"
+                                    Source="{mi:Material Icon=SignLanguage}"
+                                    VerticalOptions="Center" />
+                                <Entry
+                                    Grid.Column="1"
+                                    HeightRequest="50"
+                                    IsEnabled="False"
+                                    Style="{StaticResource CustomPicker}"
+                                    Text="{Binding SelectedHandsPosition.Number}"
+                                    TextColor="White" />
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
+                    <Grid Grid.Row="1" BackgroundColor="Transparent">
+                        <Frame Background="White">
+                            <!--  Imágen de Posición de Manos seleccionada por el usuario  -->
+                            <Grid>
+                                <Label
+                                    Margin="0,0,0,10"
+                                    FontSize="18"
+                                    IsVisible="{Binding NotHandsPositionAreSelected}"
+                                    Text="Vista prev. (Pos. Manos)"
+                                    TextColor="{StaticResource PrimaryDark}"
+                                    VerticalTextAlignment="Center" />
+                                <Image Aspect="AspectFit" Source="{Binding SelectedHandsPosition.RouteImage, Converter={StaticResource RouteToImageConverter}}" />
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                </Grid>
+            </Grid>
+
+            <Grid ColumnSpacing="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <StackLayout
+                    HorizontalOptions="EndAndExpand"
+                    Orientation="Vertical"
+                    VerticalOptions="CenterAndExpand">
+                    <Label
+                        Margin="0,10,0,10"
+                        FontSize="18"
+                        Text="Resistencia (%)" />
+                </StackLayout>
+
+                <Frame Grid.Column="1" HorizontalOptions="FillAndExpand">
+                    <Grid ColumnSpacing="10">
+                        <Entry
+                            x:Name="entResistancePersentageEntry"
+                            Grid.Column="1"
+                            CursorPosition="0"
+                            HorizontalOptions="FillAndExpand"
+                            HorizontalTextAlignment="End"
+                            IsEnabled="False"
+                            Keyboard="Numeric"
+                            Placeholder="Resistencia (%)"
+                            Style="{StaticResource CustomEntry}"
+                            Text="{Binding ResistancePercentage}"
+                            TextColor="white" />
+                    </Grid>
+                </Frame>
+            </Grid>
+
+            <StackLayout Margin="0,10,0,0" Orientation="Vertical">
+
+                <Label
+                    Margin="0,0,0,10"
+                    FontSize="18"
+                    Text="Zonas de Energia (Desde - Hasta)" />
+                <Frame HorizontalOptions="FillAndExpand">
+                    <Grid ColumnSpacing="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image
+                            Grid.Column="0"
+                            Source="{mi:Material Icon=ElectricBike}"
+                            VerticalOptions="Center" />
+                        <Entry
+                            Grid.Column="1"
+                            HeightRequest="50"
+                            HorizontalOptions="FillAndExpand"
+                            IsEnabled="False"
+                            Style="{StaticResource CustomPicker}"
+                            Text="{Binding EnergyZoneFrom}"
+                            TextColor="white" />
+                    </Grid>
+                </Frame>
+
+                <Frame Margin="0,10,0,0" HorizontalOptions="FillAndExpand">
+                    <Grid ColumnSpacing="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image
+                            Grid.Column="0"
+                            Source="{mi:Material Icon=ElectricBike}"
+                            VerticalOptions="Center" />
+                        <Entry
+                            Grid.Column="1"
+                            HeightRequest="50"
+                            HorizontalOptions="FillAndExpand"
+                            IsEnabled="False"
+                            Style="{StaticResource CustomPicker}"
+                            Text="{Binding EnergyZoneTo}"
+                            TextColor="white" />
+                    </Grid>
+                </Frame>
+            </StackLayout>
+
+            <Button
+                Margin="0,20,0,0"
+                Command="{Binding AddSessionExerciseCommand}"
+                Text="Agregar a la Sesión" />
+
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
